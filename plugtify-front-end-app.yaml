@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: plugtify-front-end
+  labels:
+    app: plugtify-front-end
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: plugtify-front-end
+  template:
+    metadata:
+      labels:
+        app: plugtify-front-end
+    spec:
+      containers:
+        - image: gcr.io/plugtify/plugtify-front-end:v2
+          name: plugtify-front-end
+          ports:
+            - containerPort: 8080
+              name: plugtify-fe
