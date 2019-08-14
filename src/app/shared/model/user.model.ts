@@ -5,7 +5,7 @@ export interface IUser {
   password: string;
 }
 
-export class User implements IUser {
+export class UserModel implements IUser {
   constructor(
     public id: number,
     public login: string,
