@@ -1,1 +1,1 @@
-export const SERVER_API_URL = 'http://plugtify-back-end/';
+export const SERVER_API_URL = 'https://plugtify.com/';
