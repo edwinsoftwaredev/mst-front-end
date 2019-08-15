@@ -42,7 +42,7 @@ export class AccountService {
    * Method to identify if a user is authenticated
    * @param force -> force to identify if user is authenticated in backend
    */
-  identify(force: boolean): Promise<IUser> {
+  identify(force?: boolean): Promise<IUser> {
     if (force) {
       this.user = null;
     }

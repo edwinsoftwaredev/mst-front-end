@@ -15,8 +15,7 @@ export class LoginService {
     private accountService: AccountService,
     private router: Router,
     private snackBar: MatSnackBar
-  ) {
-  }
+  ) { }
 
   /**
    * Method to authenticate a user
