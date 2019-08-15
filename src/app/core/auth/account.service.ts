@@ -44,7 +44,7 @@ export class AccountService {
    */
   identify(force?: boolean): Promise<IUser> {
     if (force) {
-      this.user = null;
+      this.user = undefined;
     }
 
     if (this.user) {

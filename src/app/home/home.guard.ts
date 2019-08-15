@@ -20,6 +20,10 @@ export class HomeGuard implements CanActivate {
   }
 
   checkLogin(): Promise<boolean> {
+
+    // CHECK FIRST IF THERE IS A SESSION COOKIE
+    // CONFIGURE NGINX SERVER TO REDIRECT TRAFFIC TO ROUTES OTHERS THAN /api/ and /
+
     return this.accountService.identify().then((account: IUser) => {
       if (account) {
         // validate by authorities

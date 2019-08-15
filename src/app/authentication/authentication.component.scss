@@ -7,7 +7,7 @@
   width: 50%;
   height: 100%;
   float: left;
-  background-image: url("../../assets/images/tyler-lastovich-L5DP6M5U2IA-unsplash.jpg");
+  background-image: url("../../assets/images/mildly-useful-N_xjrdKZPkw-unsplash.jpg");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -28,14 +28,20 @@
 }
 
 .title-containter {
-  width: 80%;
+  width: 70%;
   margin: auto;
   text-align: center;
+  backdrop-filter: blur(10px);
+  background-color: rgba(22, 17, 14, 0.3);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 20px;
+  border-radius: 4px;
 }
 
 .title {
   color: white;
   font-size: 62pt;
+  line-height: 62px;
   font-weight: bolder;
 }
 
