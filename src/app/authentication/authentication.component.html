@@ -1,10 +1,16 @@
 <div class="principal-container">
   <div class="first-container">
-    <div class="title-containter">
-      <div class="title">Plugtify</div>
-      <br/>
-      <div class="subtitle">An app to help you find music</div>
+    <div style="padding: 0px 20px; margin: auto; width: 100%;">
+      <div class="title-containter" [class.mat-elevation-z5]="true">
+        <div class="title">Plugtify</div>
+        <br/>
+        <div class="subtitle">An app to help you find music</div>
+      </div>
     </div>
   </div>
-  <div class="second-container"></div>
+  <div class="second-container">
+    <div class="router-container">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
 </div>

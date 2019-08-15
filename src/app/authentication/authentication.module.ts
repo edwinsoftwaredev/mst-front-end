@@ -6,6 +6,7 @@ import {AuthenticationComponent} from './authentication.component';
 import {SharedModule} from '../shared/shared.module';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import {MatButtonModule, MatInputModule} from '@angular/material';
 
 
 @NgModule({
@@ -17,7 +18,9 @@ import { RegisterComponent } from './register/register.component';
   imports: [
     CommonModule,
     AuthenticationRoutingModule,
-    SharedModule
+    SharedModule,
+    MatInputModule,
+    MatButtonModule
   ]
 })
 export class AuthenticationModule { }

@@ -1,8 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
-@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "~@angular/material/theming";
 
 body {
   margin: 0px;
   font-family: 'Raleway', sans-serif;
+  $form-field-theme: mat-light-theme(mat-palette($mat-indigo, 50, 100), mat-palette($mat-indigo, 50, 100), mat-palette($mat-red, 400, 500));
+  @include mat-form-field-theme($form-field-theme);
+  @include mat-input-theme($form-field-theme)
 }
