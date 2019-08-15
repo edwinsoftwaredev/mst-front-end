@@ -1,4 +1,4 @@
-import { trigger, transition, query, animateChild, group, animate, style } from '@angular/animations';
+import { trigger, transition, query, group, animate, style } from '@angular/animations';
 
 export const loginRegisterAnimation =
   trigger('LoginRegister', [
@@ -10,10 +10,10 @@ export const loginRegisterAnimation =
           display: 'flex',
           'align-items': 'center'
         })
-      ]), // es necesario para que la animacion funcione
+      ]), // initial state of components
       group([
         query(':enter', [
-          style({ // define el estilo inicial del componente cuando inicia la animacion
+          style({ // state of component that enters when animation start
             transform: 'translateY(50%)',
             opacity: '0'
           }),
@@ -23,8 +23,9 @@ export const loginRegisterAnimation =
           }))
         ]),
         query(':leave', [
-          style({ // define el estilo inicial del componente cuando inicia la animacion
-            transform: 'translateY(0%)'
+          style({ // state of component that leaves when animation start
+            transform: 'translateY(0%)',
+            opacity: '1'
           }),
           animate('300ms ease-out', style({
             transform: 'translateY(-50%)',
@@ -41,10 +42,10 @@ export const loginRegisterAnimation =
           display: 'flex',
           'align-items': 'center'
         })
-      ]), // es necesario para que la animacion funcione
+      ]), // initial state of components
       group([
         query(':enter', [
-          style({ // define el estilo inicial del componente cuando inicia la animacion
+          style({ // state of component that enters when animation start
             transform: 'translateY(-50%)',
             opacity: '0'
           }),
@@ -54,8 +55,9 @@ export const loginRegisterAnimation =
           }))
         ]),
         query(':leave', [
-          style({ // define el estilo inicial del componente cuando inicia la animacion
-            transform: 'translateY(0%)'
+          style({ // state of component that leaves when animation start
+            transform: 'translateY(0%)',
+            opacity: '1'
           }),
           animate('300ms ease-out', style({
             transform: 'translateY(50%)',

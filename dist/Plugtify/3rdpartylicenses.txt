@@ -87,6 +87,10 @@ THE SOFTWARE.
 
 @angular/material/button
 
+@angular/material/card
+
+@angular/material/form-field
+
 @angular/material/snack-bar
 
 @angular/platform-browser

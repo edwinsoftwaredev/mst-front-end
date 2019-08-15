@@ -1,13 +1,12 @@
-@import "~@angular/material/theming";
-
 .principal-container {
   display: flex;
   height: 100%;
+  margin: auto 10px;
 }
 
 .principal-card {
   margin: auto;
-  width: 60%;
+  width: 100%;
   text-align: center;
   font-family: 'Raleway', sans-serif;
   backdrop-filter: blur(10px);

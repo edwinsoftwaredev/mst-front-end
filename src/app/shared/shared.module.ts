@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {HttpClientModule} from '@angular/common/http';
-import {MatCardModule, MatFormFieldModule, MatSnackBarModule} from '@angular/material';
+import {MatButtonModule, MatCardModule, MatFormFieldModule, MatInputModule, MatSnackBarModule} from '@angular/material';
 import {RouterModule} from '@angular/router';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -19,6 +19,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     MatSnackBarModule,
     MatCardModule,
     MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
     RouterModule
   ],
   exports: [
@@ -31,6 +33,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     MatSnackBarModule,
     MatCardModule,
     MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
     RouterModule
   ]
 })

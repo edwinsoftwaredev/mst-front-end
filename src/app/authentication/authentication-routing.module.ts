@@ -17,11 +17,13 @@ const routes: Routes = [
       },
       {
         path: 'login',
-        component: LoginComponent
+        component: LoginComponent,
+        data: {animation: 'login'}
       },
       {
         path: 'register',
-        component: RegisterComponent
+        component: RegisterComponent,
+        data: {animation: 'register'}
       }
     ]
   }
