@@ -1,0 +1,47 @@
+.principal-container {
+  width: 100%;
+  height: 100vh;
+}
+
+.first-container {
+  width: 50%;
+  height: 100%;
+  float: left;
+  background-image: url("../../assets/images/tyler-lastovich-L5DP6M5U2IA-unsplash.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+}
+
+.second-container {
+  width: 50%;
+  height: 100%;
+  float: left;
+  animation: colorchange 4s infinite alternate;
+  -webkit-animation: colorchange 4s infinite alternate;
+}
+
+@keyframes colorchange {
+  0% {background-color: #1c3a77}
+  100% {background-color: #245398}
+}
+
+.title-containter {
+  width: 80%;
+  margin: auto;
+  text-align: center;
+}
+
+.title {
+  color: white;
+  font-size: 62pt;
+  font-weight: bolder;
+}
+
+.subtitle {
+  color: white;
+  font-size: 22pt;
+  font-weight: bold;
+}
+
