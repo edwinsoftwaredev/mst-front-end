@@ -15,7 +15,8 @@ export class LoginService {
     private accountService: AccountService,
     private router: Router,
     private snackBar: MatSnackBar
-  ) { }
+  ) {
+  }
 
   /**
    * Method to authenticate a user
@@ -55,6 +56,12 @@ export class LoginService {
       });
   }
 
+  /**
+   * method to logout a user.
+   *
+   * This method make a request to the endpoint logout wich is the default endpoint in
+   * Spring, with Basic Authentication, to logout a user.
+   */
   logout() {
     this.httpClient
       .post(SERVER_API_URL + 'logout', {}, {observe: 'response'})
