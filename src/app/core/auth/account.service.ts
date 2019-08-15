@@ -29,6 +29,19 @@ export class AccountService {
     return this.httpClient.get<IUser>(SERVER_API_URL + 'api/account', {observe: 'response'});
   }
 
+  /**
+   * Method to reset the user authenticated
+   * @param user: user to make the reset
+   */
+  authenticate(user) {
+    this.user = user;
+    this.userAuthenticated = this.user !== null;
+  }
+
+  /**
+   * Method to identify if a user is authenticated
+   * @param force -> force to identify if user is authenticated in backend
+   */
   identify(force: boolean): Promise<IUser> {
     if (force) {
       this.user = null;
