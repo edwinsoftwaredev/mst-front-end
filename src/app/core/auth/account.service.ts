@@ -19,7 +19,7 @@ export class AccountService {
    * @param account to register -> login, email, password
    */
   registerUser(account: any): Observable<HttpResponse<any>> {
-    return this.httpClient.post<any>(SERVER_API_URL + 'api/account', account, {observe: 'response'});
+    return this.httpClient.post<any>(SERVER_API_URL + 'api/register', account, {observe: 'response'});
   }
 
   /**
