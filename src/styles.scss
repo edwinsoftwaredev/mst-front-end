@@ -6,7 +6,7 @@
 body {
   margin: 0px;
   font-family: 'Raleway', sans-serif;
-  $form-field-theme: mat-light-theme(mat-palette($mat-indigo, 50, 100), mat-palette($mat-indigo, 50, 100), mat-palette($mat-red, 400, 500));
+  $form-field-theme: mat-light-theme(mat-palette($mat-indigo, 50, 100), mat-palette($mat-indigo, 50, 100), mat-palette($mat-red));
   @include mat-form-field-theme($form-field-theme);
-  @include mat-input-theme($form-field-theme)
+  @include mat-input-theme($form-field-theme);
 }

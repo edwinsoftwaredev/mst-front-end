@@ -2,34 +2,49 @@
   <mat-card class="principal-card" [class.mat-elevation-z5]="true">
     <mat-card-header>
       <mat-card-title>Plugtify</mat-card-title>
-      <mat-card-subtitle>Register</mat-card-subtitle>
+      <mat-card-subtitle>Sign Up</mat-card-subtitle>
     </mat-card-header>
     <br/>
-    <form>
+    <form type="form" #formRegister="ngForm">
       <mat-card-content>
         <mat-form-field appearance="fill" class="form-input" color="primary">
           <mat-label>User</mat-label>
-          <input type="text" name="username" id="username" matInput required>
+          <input type="text"
+                 name="username"
+                 id="username"
+                 matInput
+                 required
+                 [(ngModel)]="account.username"
+                 #usernameRef="ngModel"
+                 minlength="5"
+                 maxlength="20"
+                 pattern="^[_.@A-Za-z0-9-]+$">
+          <mat-hint *ngIf="usernameRef.dirty && (usernameRef.hasError('minlength') || usernameRef.hasError('maxlength')) && !usernameRef.hasError('pattern')">Username length must be between 5-20 characters</mat-hint>
+          <mat-hint *ngIf="usernameRef.dirty && usernameRef.hasError('pattern')">The username field only support this characters: _.@A-Za-z0-9-</mat-hint>
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="form-input" color="primary">
           <mat-label>Email</mat-label>
-          <input type="email" name="email" id="email" matInput required>
+          <input type="email" name="email" id="email" matInput required [(ngModel)]="account.email" email #emailRef="ngModel">
+          <mat-hint *ngIf="!emailRef.valid && emailRef.dirty">The email must be valid and is required</mat-hint>
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="form-input" color="primary">
           <mat-label>password</mat-label>
-          <input type="password" name="password" id="password" matInput required>
+          <input type="password" name="password" id="password" matInput required [(ngModel)]="account.password" #password="ngModel" maxlength="60" minlength="6">
+          <mat-hint *ngIf="password.dirty && (password.hasError('maxlength') || password.hasError('minlength'))">Password length must be between 6-60 characters</mat-hint>
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="form-input" color="primary">
           <mat-label>confirm password</mat-label>
-          <input type="password" name="confirm-password" id="confirm-password" matInput required>
+          <input type="password" name="confirm-password" id="confirm-password" matInput required [(ngModel)]="confirmPassword">
+          <mat-hint *ngIf="password.dirty && password.value !== confirmPassword">Confirm Password does not match Password</mat-hint>
         </mat-form-field>
       </mat-card-content>
       <mat-card-actions>
         <button mat-button mat-flat-button type="button" (click)="switchLogin()">Log In</button>
-        <button mat-button mat-flat-button type="button" color="primary">Sign Up</button>
+        <button mat-button mat-flat-button type="button" color="primary" [disabled]="true" *ngIf="(!formRegister.valid || password.value !== confirmPassword)">Sign Up</button>
+        <button mat-button mat-flat-button type="submit" color="primary" [disabled]="!formRegister.valid || password.value !== confirmPassword" *ngIf="!(!formRegister.valid || password.value !== confirmPassword)">Sign Up</button>
       </mat-card-actions>
     </form>
   </mat-card>
