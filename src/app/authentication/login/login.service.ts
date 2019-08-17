@@ -4,11 +4,15 @@ import {SERVER_API_URL} from '../../shared/app-constants';
 import {AccountService} from '../../core/auth/account.service';
 import {Router} from '@angular/router';
 import {MatSnackBar} from '@angular/material';
+import {Observable, Subject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
+
+  private tryLogin: Subject<boolean> = new Subject<boolean>();
+  tryLoginObserver: Observable<boolean> = this.tryLogin.asObservable();
 
   constructor(
     private httpClient: HttpClient,
@@ -24,6 +28,8 @@ export class LoginService {
    */
   authenticate(credentials: any, callback: any) {
 
+    this.tryLogin.next(true);
+
     // BASIC authentication token Http Header
     const headerAuthenticationToken = new HttpHeaders(credentials ? {
       authorization: 'Basic ' + btoa(credentials.username + ':' + credentials.password)
@@ -35,22 +41,27 @@ export class LoginService {
         if (res.body) {
           this.accountService.identify(true).then(() => {
             this.router.navigateByUrl('/home');
+            this.tryLogin.next(false);
           }, (rejected: any) => {
             this.router.navigateByUrl('/authenticate/login');
             console.log(rejected);
             this.snackBar.open('There was an error while trying to log in. Try later. 🗨', '', {duration: 5000});
+            this.tryLogin.next(false);
           });
         } else {
           this.router.navigateByUrl('/authenticate/login');
           this.snackBar.open('There was an error while trying to log in. Try later. 🗨', '', {duration: 5000});
+          this.tryLogin.next(false);
         }
 
         return callback && callback();
       }, (errorResponse: HttpErrorResponse) => {
         if (errorResponse.status === 0) {
           this.snackBar.open('There was an error while trying to log in. Try later. 🗨', '', {duration: 5000});
+          this.tryLogin.next(false);
         } else {
           this.snackBar.open('Failed to log in! Please check your credentials and try again. 🗨', '', {duration: 5000});
+          this.tryLogin.next(false);
         }
       });
   }

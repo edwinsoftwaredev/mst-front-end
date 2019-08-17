@@ -8,6 +8,7 @@ import {HomeModule} from './home/home.module';
 import {AuthenticationModule} from './authentication/authentication.module';
 import { MenuComponent } from './menu/menu.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import {CookieService} from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     AuthenticationModule,
     AppRoutingModule,
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

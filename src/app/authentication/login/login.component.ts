@@ -1,18 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {LoginService} from './login.service';
 import {CsrfTokenService} from '../../shared/services/csrf-token.service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
 
   username: string;
   password: string;
   tryLogin: boolean;
+  tryLoginSubscription: Subscription;
 
   constructor(
     private router: Router,
@@ -24,13 +26,18 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.tryLoginSubscription = this.loginService.tryLoginObserver.subscribe((value: boolean) => {
+      this.tryLogin = value;
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.tryLoginSubscription.unsubscribe();
   }
 
   login(): void {
     // do login
       // check if user have Spotify tokens
-
-    this.tryLogin = true;
 
     if (this.username.length !== 0 && this.password.length !== 0) {
       const credentials = {
@@ -39,7 +46,7 @@ export class LoginComponent implements OnInit {
       };
 
       this.loginService.authenticate(credentials, () => {
-        this.tryLogin = false;
+        // do something
       });
     }
   }

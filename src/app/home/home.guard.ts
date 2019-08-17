@@ -3,6 +3,7 @@ import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Route
 import { Observable } from 'rxjs';
 import {AccountService} from '../core/auth/account.service';
 import {IUser} from '../shared/model/user.model';
+import {CookieService} from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,8 @@ import {IUser} from '../shared/model/user.model';
 export class HomeGuard implements CanActivate {
   constructor(
     private accountService: AccountService,
-    private router: Router) {}
+    private router: Router,
+    private cookieService: CookieService) {}
 
   canActivate(
     next: ActivatedRouteSnapshot,
@@ -22,19 +24,30 @@ export class HomeGuard implements CanActivate {
   checkLogin(): Promise<boolean> {
 
     // CHECK FIRST IF THERE IS A SESSION COOKIE
-    // CONFIGURE NGINX SERVER TO REDIRECT TRAFFIC TO ROUTES OTHERS THAN /api/ and /
 
-    return this.accountService.identify().then((account: IUser) => {
-      if (account) {
-        // validate by authorities
-        return true;
-      }
+    if (this.cookieService.check('JSESSIONID')) {
+      return this.accountService.identify().then((account: IUser) => {
+        if (account) {
+          // validate by authorities
 
+          // validate if user have spotify tokens
+          if (account.hasToken) {
+            return true;
+          } else {
+            this.router.navigateByUrl('/authenticate/connect-spotify');
+            return false;
+          }
+        }
+
+        this.router.navigateByUrl('/authenticate/login');
+        return false;
+      }, (rejected: any) => {
+        this.router.navigateByUrl('/authenticate/login');
+        return false;
+      });
+    } else {
       this.router.navigateByUrl('/authenticate/login');
-      return false;
-    }, (rejected: any) => {
-      this.router.navigateByUrl('/authenticate/login');
-      return false;
-    });
+      return Promise.resolve(false);
+    }
   }
 }
