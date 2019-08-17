@@ -9,6 +9,9 @@ import {AuthenticationModule} from './authentication/authentication.module';
 import { MenuComponent } from './menu/menu.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import {CookieService} from 'ngx-cookie-service';
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import {XhrInterceptor} from './config/interceptors/xhr.interceptor';
+import {XsrfInterceptor} from './config/interceptors/xsrf.interceptor';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,19 @@ import {CookieService} from 'ngx-cookie-service';
     AuthenticationModule,
     AppRoutingModule,
   ],
-  providers: [CookieService],
+  providers: [
+    CookieService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: XhrInterceptor, // interceptor to enable XMLHttpRequest
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: XsrfInterceptor, // interceptor to set header X-XSRF-TOKEN
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
