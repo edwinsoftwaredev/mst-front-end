@@ -22,5 +22,6 @@
         <button mat-button mat-flat-button type="button" (click)="swithRegister()">Sign Up</button>
       </mat-card-actions>
     </form>
+    <mat-progress-bar *ngIf="tryLogin" color="primary" mode="indeterminate"></mat-progress-bar>
   </mat-card>
 </div>
