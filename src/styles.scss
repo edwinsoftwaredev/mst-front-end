@@ -9,4 +9,6 @@ body {
   $form-field-theme: mat-light-theme(mat-palette($mat-indigo, 50, 100), mat-palette($mat-indigo, 50, 100), mat-palette($mat-red));
   @include mat-form-field-theme($form-field-theme);
   @include mat-input-theme($form-field-theme);
+  $progress-bar-theme: mat-light-theme(mat-palette($mat-indigo, 500, 50), mat-palette($mat-indigo, 500, 50), mat-palette($mat-indigo, 500, 50));
+  // @include mat-progress-bar-theme($progress-bar-theme);
 }

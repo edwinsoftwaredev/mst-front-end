@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import {AuthenticationComponent} from './authentication.component';
 import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
+import {SpotifyAuthenticationComponent} from './spotify-authentication/spotify-authentication.component';
 
 
 const routes: Routes = [
@@ -24,6 +25,11 @@ const routes: Routes = [
         path: 'register',
         component: RegisterComponent,
         data: {animation: 'register'}
+      },
+      {
+        path: 'connect-spotify',
+        component: SpotifyAuthenticationComponent,
+        data: {animation: 'connectSpotify'}
       }
     ]
   }

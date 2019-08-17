@@ -5,7 +5,7 @@ import {AuthenticationComponent} from './authentication.component';
 import {SharedModule} from '../shared/shared.module';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import {MatProgressBarModule} from '@angular/material';
+import {MatProgressBarModule, MatRippleModule} from '@angular/material';
 import { SpotifyAuthenticationComponent } from './spotify-authentication/spotify-authentication.component';
 
 
@@ -19,7 +19,8 @@ import { SpotifyAuthenticationComponent } from './spotify-authentication/spotify
   imports: [
     SharedModule,
     AuthenticationRoutingModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatRippleModule
   ]
 })
 export class AuthenticationModule { }

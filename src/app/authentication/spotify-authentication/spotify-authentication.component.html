@@ -1,1 +1,20 @@
-<p>spotify-authentication works!</p>
+<div class="principal-container">
+  <mat-card class="principal-card" [class.mat-elevation-z5]="true">
+    <mat-card-header>
+      <mat-card-title><i>Plugtify</i></mat-card-title>
+      <mat-card-subtitle>Connect with <img src="../../../assets/images/spotify-brand.svg" width="120px" style="transform: translateY(12px);"></mat-card-subtitle>
+    </mat-card-header>
+    <form>
+      <mat-card-content style="color: white; width: 90%; margin: 15px auto;">
+        <span style="font-size: 12pt;">This application works with the Spotify API.</span><br/><br/>
+        <span style="font-size: 10pt;">To start to using <i><strong>Plugtify</strong></i> you need to connect this application with Spotify.</span><br/><br/>
+        <span style="font-size: 10pt;"><i><strong>Plugtify</strong></i> will only have access to the information that the public Spotify API provides.</span><br/><br/>
+        <span style="font-size: 10pt;"><i><strong>Plugtify</strong></i> will not have access to sensitive information from your Spotify account(Password, Billing Information and other similar data).</span>
+      </mat-card-content>
+      <mat-card-actions>
+        <button matRipple matRippleColor="white" mat-button mat-flat-button type="button" class="btn-connect-spotify" color="primary">Connect with <img src="../../../assets/images/spotify-brand.svg" width="82px" style="transform: translateY(-2px);"></button>
+        <button mat-button mat-flat-button type="button" style="margin-top: 10px;" (click)="logout()">Log Out</button>
+      </mat-card-actions>
+    </form>
+  </mat-card>
+</div>

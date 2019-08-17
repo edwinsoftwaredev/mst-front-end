@@ -5,7 +5,7 @@
       <mat-card-subtitle>Log In</mat-card-subtitle>
     </mat-card-header>
     <br/>
-    <form type="form" #loginForm="ngForm">
+    <form type="form" #loginForm="ngForm" (ngSubmit)="login()">
       <mat-card-content>
         <mat-form-field appearance="fill" class="form-input" color="primary">
           <mat-label>User</mat-label>
@@ -18,8 +18,8 @@
         </mat-form-field>
       </mat-card-content>
       <mat-card-actions>
+        <button class="btn-login" matRipple matRippleColor="white" mat-button mat-flat-button type="submit" color="primary" [disabled]="!loginForm.valid" style="margin-bottom: 10px;">Log In</button>
         <button mat-button mat-flat-button type="button" (click)="swithRegister()">Sign Up</button>
-        <button mat-button mat-flat-button type="submit" color="primary" [disabled]="!loginForm.valid">Log In</button>
       </mat-card-actions>
     </form>
   </mat-card>

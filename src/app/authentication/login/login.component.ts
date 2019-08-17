@@ -18,7 +18,14 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  swithRegister() {
+  login(): void {
+    // do login
+      // check if user have Spotify tokens
+
+    this.router.navigate(['../connect-spotify'], {relativeTo: this.route});
+  }
+
+  swithRegister(): void {
     this.router.navigate(['../register'], {
       relativeTo: this.route
     });

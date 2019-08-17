@@ -48,6 +48,8 @@ export class RegisterComponent implements OnInit {
           });
       }, ((errorResponse: HttpErrorResponse) => {
 
+        this.showProgressBar = false;
+
         if (errorResponse.status === 0) {
           this.snackBar.open('An error occurred while trying to register. Try later. 🗨', '', {duration: 5000});
         } else if (errorResponse.status === 400 && errorResponse.error.type === LOGIN_ALREADY_USED_TYPE) {

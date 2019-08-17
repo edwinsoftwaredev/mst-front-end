@@ -31,7 +31,7 @@ export const loginRegisterAnimation =
             transform: 'translateY(-50%)',
             opacity: '0'
           }))
-        ]),
+        ])
       ])
     ]),
     transition('register => login', [
@@ -61,6 +61,70 @@ export const loginRegisterAnimation =
           }),
           animate('300ms ease-out', style({
             transform: 'translateY(50%)',
+            opacity: '0'
+          }))
+        ])
+      ])
+    ]),
+    transition('login => connectSpotify', [
+      query(':enter, :leave', [
+        style({
+          position: 'absolute',
+          height: '100%',
+          display: 'flex',
+          'align-items': 'center'
+        })
+      ]), // initial state of components
+      group([
+        query(':enter', [
+          style({ // state of component that enters when animation start
+            transform: 'translateY(-50%)',
+            opacity: '0'
+          }),
+          animate('300ms ease-in', style({
+            transform: 'translateY(0%)',
+            opacity: '1'
+          }))
+        ]),
+        query(':leave', [
+          style({ // state of component that leaves when animation start
+            transform: 'translateY(0%)',
+            opacity: '1'
+          }),
+          animate('300ms ease-out', style({
+            transform: 'translateY(50%)',
+            opacity: '0'
+          }))
+        ])
+      ])
+    ]),
+    transition('connectSpotify => login', [
+      query(':enter, :leave', [
+        style({
+          position: 'absolute',
+          height: '100%',
+          display: 'flex',
+          'align-items': 'center'
+        })
+      ]), // initial state of components
+      group([
+        query(':enter', [
+          style({ // state of component that enters when animation start
+            transform: 'translateY(50%)',
+            opacity: '0'
+          }),
+          animate('300ms ease-in', style({
+            transform: 'translateY(0%)',
+            opacity: '1'
+          }))
+        ]),
+        query(':leave', [
+          style({ // state of component that leaves when animation start
+            transform: 'translateY(0%)',
+            opacity: '1'
+          }),
+          animate('300ms ease-out', style({
+            transform: 'translateY(-50%)',
             opacity: '0'
           }))
         ])

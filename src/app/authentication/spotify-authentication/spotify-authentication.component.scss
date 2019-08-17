@@ -1,0 +1,48 @@
+.principal-container {
+  display: flex;
+  height: 100%;
+  margin: auto 10px;
+}
+
+.principal-card {
+  margin: auto;
+  width: 100%;
+  text-align: center;
+  font-family: 'Raleway', sans-serif;
+  backdrop-filter: blur(10px);
+  background-color: rgba(133, 133, 133, 0.3);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.form-input {
+  font-family: 'Raleway', sans-serif;
+  width: 90%;
+}
+
+mat-card-title {
+  font-weight: bolder;
+  color: white;
+  font-size: 25pt !important;
+  text-align: left;
+  margin-bottom: 0px !important;
+}
+
+mat-card-subtitle {
+  font-weight: bolder;
+  color: white;
+  font-size: 16pt !important;
+  text-align: left;
+}
+
+button {
+  width: 87%;
+  font-family: 'Raleway', sans-serif;
+  font-weight: bolder;
+}
+
+.btn-connect-spotify {
+  padding: 0px;
+  text-align: center;
+  background-color: #1DB954;
+  overflow: hidden; // necessary for the mat-ripple
+}
