@@ -1,10 +1,13 @@
 import {Moment} from 'moment';
+import {IToken} from './token.model';
 
 export interface IUser {
   id?: number;
   login?: string;
   email?: string;
   password?: string;
+  token?: IToken;
+  hasToken?: boolean;
   createdBy?: string;
   createdDate?: Moment;
   lastUpdatedBy?: string;
@@ -17,6 +20,8 @@ export class UserModel implements IUser {
     public login?: string,
     public email?: string,
     public password?: string,
+    token?: IToken,
+    hasToken?: boolean,
     public createdBy?: string,
     public createdDate?: Moment,
     public lastUpdatedBy?: string,

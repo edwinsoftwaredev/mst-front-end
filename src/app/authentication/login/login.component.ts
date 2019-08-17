@@ -42,8 +42,6 @@ export class LoginComponent implements OnInit {
         this.tryLogin = false;
       });
     }
-
-    this.router.navigate(['../connect-spotify'], {relativeTo: this.route});
   }
 
   swithRegister(): void {
