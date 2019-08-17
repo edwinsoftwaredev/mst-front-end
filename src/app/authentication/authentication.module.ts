@@ -5,17 +5,21 @@ import {AuthenticationComponent} from './authentication.component';
 import {SharedModule} from '../shared/shared.module';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import {MatProgressBarModule} from '@angular/material';
+import { SpotifyAuthenticationComponent } from './spotify-authentication/spotify-authentication.component';
 
 
 @NgModule({
   declarations: [
     LoginComponent,
     RegisterComponent,
-    AuthenticationComponent
+    AuthenticationComponent,
+    SpotifyAuthenticationComponent
   ],
   imports: [
     SharedModule,
-    AuthenticationRoutingModule
+    AuthenticationRoutingModule,
+    MatProgressBarModule
   ]
 })
 export class AuthenticationModule { }
