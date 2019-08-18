@@ -74,16 +74,22 @@ export class LoginService {
    * Spring, with Basic Authentication, to logout a user.
    */
   logout() {
-    this.httpClient
-      .post(SERVER_API_URL + 'api/logout', {}, {observe: 'response'})
-      .subscribe((response) => {
-        this.cookieService.delete('HAS-SESSION');
-        this.accountService.authenticate(null);
-        this.router.navigateByUrl('/authenticate/login');
-      }, ((error: HttpErrorResponse) => {
-        this.cookieService.delete('HAS-SESSION');
-        this.accountService.authenticate(null);
-        this.router.navigateByUrl('/authenticate/login');
-      }));
+    if (this.cookieService.check('HAS-SESSSION')) {
+      this.httpClient
+        .post(SERVER_API_URL + 'api/logout', {}, {observe: 'response'})
+        .subscribe((response) => {
+          this.cookieService.delete('HAS-SESSION');
+          this.accountService.authenticate(null);
+          this.router.navigateByUrl('/authenticate/login');
+        }, ((error: HttpErrorResponse) => {
+          this.cookieService.delete('HAS-SESSION');
+          this.accountService.authenticate(null);
+          this.router.navigateByUrl('/authenticate/login');
+        }));
+    } else {
+      this.cookieService.delete('HAS-SESSION');
+      this.accountService.authenticate(null);
+      this.router.navigateByUrl('/authenticate/login');
+    }
   }
 }
