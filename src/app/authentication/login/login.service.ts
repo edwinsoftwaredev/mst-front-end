@@ -75,7 +75,7 @@ export class LoginService {
    */
   logout() {
     this.httpClient
-      .post(SERVER_API_URL + 'logout', {}, {observe: 'response'})
+      .post(SERVER_API_URL + 'api/logout', {}, {observe: 'response'})
       .subscribe((response) => {
         this.cookieService.delete('USER-HAS-SESSION');
         this.accountService.authenticate(null);
