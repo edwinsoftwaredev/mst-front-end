@@ -5,6 +5,7 @@ import {AccountService} from '../../core/auth/account.service';
 import {Router} from '@angular/router';
 import {MatSnackBar} from '@angular/material';
 import {Observable, Subject} from 'rxjs';
+import {CookieService} from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,8 @@ export class LoginService {
     private httpClient: HttpClient,
     private accountService: AccountService,
     private router: Router,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private cookieService: CookieService
   ) { }
 
   /**
@@ -40,15 +42,18 @@ export class LoginService {
 
         if (res.body) {
           this.accountService.identify(true).then(() => {
+            this.cookieService.set('USER-HAS-SESSION', '1');
             this.router.navigateByUrl('/home');
             this.tryLogin.next(false);
           }, (rejected: any) => {
+            this.cookieService.delete('USER-HAS-SESSION');
             this.router.navigateByUrl('/authenticate/login');
             console.log(rejected);
             this.snackBar.open('There was an error while trying to log in. Try later. 🗨', '', {duration: 5000});
             this.tryLogin.next(false);
           });
         } else {
+          this.cookieService.delete('USER-HAS-SESSION');
           this.router.navigateByUrl('/authenticate/login');
           this.snackBar.open('There was an error while trying to log in. Try later. 🗨', '', {duration: 5000});
           this.tryLogin.next(false);
@@ -57,9 +62,11 @@ export class LoginService {
         return callback && callback();
       }, (errorResponse: HttpErrorResponse) => {
         if (errorResponse.status === 0) {
+          this.cookieService.delete('USER-HAS-SESSION');
           this.snackBar.open('There was an error while trying to log in. Try later. 🗨', '', {duration: 5000});
           this.tryLogin.next(false);
         } else {
+          this.cookieService.delete('USER-HAS-SESSION');
           this.snackBar.open('Failed to log in! Please check your credentials and try again. 🗨', '', {duration: 5000});
           this.tryLogin.next(false);
         }
@@ -76,6 +83,7 @@ export class LoginService {
     this.httpClient
       .post(SERVER_API_URL + 'logout', {}, {observe: 'response'})
       .subscribe((response) => {
+        this.cookieService.delete('USER-HAS-SESSION');
         this.accountService.authenticate(null);
         this.router.navigateByUrl('/authenticate/login');
       });

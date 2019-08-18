@@ -3,6 +3,7 @@ import {HttpClient, HttpResponse} from '@angular/common/http';
 import {SERVER_API_URL} from '../../shared/app-constants';
 import {Observable} from 'rxjs';
 import {IUser} from '../../shared/model/user.model';
+import {CookieService} from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,10 @@ export class AccountService {
   private user: IUser;
   private userAuthenticated: boolean;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(
+    private httpClient: HttpClient,
+    private cookieService: CookieService
+  ) { }
 
   /**
    * Method to register a User
@@ -57,11 +61,18 @@ export class AccountService {
       if (userAccount) {
         this.user = userAccount;
         this.userAuthenticated = true;
+        this.cookieService.set('USER-HAS-SESSION', '1');
       } else {
+        this.cookieService.delete('USER-HAS-SESSION');
         this.user = null;
         this.userAuthenticated  = false;
       }
 
+      return this.user;
+    }, (rejected: any) => {
+      this.cookieService.delete('USER-HAS-SESSION');
+      this.user = null;
+      this.userAuthenticated = false;
       return this.user;
     });
   }

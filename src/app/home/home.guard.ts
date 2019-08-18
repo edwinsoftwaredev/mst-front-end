@@ -25,7 +25,7 @@ export class HomeGuard implements CanActivate {
 
     // CHECK FIRST IF THERE IS A SESSION COOKIE
 
-    if (this.cookieService.check('JSESSIONID')) {
+    if (this.cookieService.check('USER-HAS-SESSION')) {
       return this.accountService.identify().then((account: IUser) => {
         if (account) {
           // validate by authorities
@@ -38,10 +38,11 @@ export class HomeGuard implements CanActivate {
             return false;
           }
         }
-
+        this.cookieService.delete('USER-HAS-SESSION');
         this.router.navigateByUrl('/authenticate/login');
         return false;
       }, (rejected: any) => {
+        this.cookieService.delete('USER-HAS-SESSION');
         this.router.navigateByUrl('/authenticate/login');
         return false;
       });
