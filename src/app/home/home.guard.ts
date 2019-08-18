@@ -38,11 +38,9 @@ export class HomeGuard implements CanActivate {
             return false;
           }
         }
-        this.cookieService.delete('USER-HAS-SESSION');
         this.router.navigateByUrl('/authenticate/login');
         return false;
       }, (rejected: any) => {
-        this.cookieService.delete('USER-HAS-SESSION');
         this.router.navigateByUrl('/authenticate/login');
         return false;
       });

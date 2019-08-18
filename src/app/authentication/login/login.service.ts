@@ -42,19 +42,15 @@ export class LoginService {
 
         if (res.body) {
           this.accountService.identify(true).then(() => {
-            this.cookieService.set('USER-HAS-SESSION', '1');
             this.router.navigateByUrl('/home');
             this.tryLogin.next(false);
           }, (rejected: any) => {
-            this.cookieService.delete('USER-HAS-SESSION');
             this.router.navigateByUrl('/authenticate/login');
-            console.log(rejected);
             this.snackBar.open('There was an error while trying to log in. Try later. 🗨', '', {duration: 5000});
             this.tryLogin.next(false);
           });
         } else {
-          this.cookieService.delete('USER-HAS-SESSION');
-          this.router.navigateByUrl('/authenticate/login');
+          this.logout();
           this.snackBar.open('There was an error while trying to log in. Try later. 🗨', '', {duration: 5000});
           this.tryLogin.next(false);
         }
@@ -62,11 +58,9 @@ export class LoginService {
         return callback && callback();
       }, (errorResponse: HttpErrorResponse) => {
         if (errorResponse.status === 0) {
-          this.cookieService.delete('USER-HAS-SESSION');
           this.snackBar.open('There was an error while trying to log in. Try later. 🗨', '', {duration: 5000});
           this.tryLogin.next(false);
         } else {
-          this.cookieService.delete('USER-HAS-SESSION');
           this.snackBar.open('Failed to log in! Please check your credentials and try again. 🗨', '', {duration: 5000});
           this.tryLogin.next(false);
         }

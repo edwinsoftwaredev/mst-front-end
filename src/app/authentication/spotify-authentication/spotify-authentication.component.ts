@@ -23,7 +23,7 @@ export class SpotifyAuthenticationComponent implements OnInit {
   }
 
   logout() {
-    // this.loginService.logout();
+    this.loginService.logout();
     this.router.navigate(['../login'], {relativeTo: this.route});
   }
 }

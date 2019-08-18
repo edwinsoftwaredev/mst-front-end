@@ -18,9 +18,7 @@ import { SpotifyAuthenticationComponent } from './spotify-authentication/spotify
   ],
   imports: [
     SharedModule,
-    AuthenticationRoutingModule,
-    MatProgressBarModule,
-    MatRippleModule
+    AuthenticationRoutingModule
   ]
 })
 export class AuthenticationModule { }
