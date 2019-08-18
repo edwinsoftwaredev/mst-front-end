@@ -36,7 +36,7 @@ export class RegisterComponent implements OnInit {
       this.showProgressBar = true;
       this.enableSignButton = false;
 
-      this.account.username = this.account.username.toLowerCase();
+      this.account.login = this.account.login.toLowerCase();
 
       this.accountService.registerUser(this.account).subscribe((res: HttpResponse<any>) => {
         this.showProgressBar = false;
