@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import {AccountService} from '../core/auth/account.service';
 import {IUser} from '../shared/model/user.model';
 import {CookieService} from 'ngx-cookie-service';
+import {LoginService} from '../authentication/login/login.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,8 @@ export class HomeGuard implements CanActivate {
   constructor(
     private accountService: AccountService,
     private router: Router,
-    private cookieService: CookieService) {}
+    private cookieService: CookieService,
+    private loginService: LoginService) {}
 
   canActivate(
     next: ActivatedRouteSnapshot,
@@ -25,7 +27,7 @@ export class HomeGuard implements CanActivate {
 
     // CHECK FIRST IF THERE IS A SESSION COOKIE
 
-    if (this.cookieService.check('USER-HAS-SESSION')) {
+    if (this.cookieService.check('HAS-SESSION')) {
       return this.accountService.identify().then((account: IUser) => {
         if (account) {
           // validate by authorities
@@ -38,14 +40,14 @@ export class HomeGuard implements CanActivate {
             return false;
           }
         }
-        this.router.navigateByUrl('/authenticate/login');
+        this.loginService.logout();
         return false;
       }, (rejected: any) => {
-        this.router.navigateByUrl('/authenticate/login');
+        this.loginService.logout();
         return false;
       });
     } else {
-      this.router.navigateByUrl('/authenticate/login');
+      this.loginService.logout();
       return Promise.resolve(false);
     }
   }

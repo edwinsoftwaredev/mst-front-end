@@ -77,9 +77,13 @@ export class LoginService {
     this.httpClient
       .post(SERVER_API_URL + 'api/logout', {}, {observe: 'response'})
       .subscribe((response) => {
-        this.cookieService.delete('USER-HAS-SESSION');
+        this.cookieService.delete('HAS-SESSION');
         this.accountService.authenticate(null);
         this.router.navigateByUrl('/authenticate/login');
-      });
+      }, ((error: HttpErrorResponse) => {
+        this.cookieService.delete('HAS-SESSION');
+        this.accountService.authenticate(null);
+        this.router.navigateByUrl('/authenticate/login');
+      }));
   }
 }

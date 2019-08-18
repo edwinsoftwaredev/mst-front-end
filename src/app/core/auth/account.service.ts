@@ -61,8 +61,8 @@ export class AccountService {
       if (userAccount) {
         this.user = userAccount;
         this.userAuthenticated = true;
-        this.cookieService.delete('USER-HAS-SESSION');
-        this.cookieService.set('USER-HAS-SESSION', '1');
+        this.cookieService.delete('HAS-SESSION');
+        this.cookieService.set('HAS-SESSION', '1');
       } else {
         this.cookieService.delete('USER-HAS-SESSION');
         this.user = null;
@@ -71,7 +71,7 @@ export class AccountService {
 
       return this.user;
     }, (rejected: any) => {
-      this.cookieService.delete('USER-HAS-SESSION');
+      this.cookieService.delete('HAS-SESSION');
       this.user = null;
       this.userAuthenticated = false;
       return this.user;
