@@ -4,6 +4,7 @@ import {SERVER_API_URL} from '../../shared/app-constants';
 import {Observable} from 'rxjs';
 import {IUser} from '../../shared/model/user.model';
 import {CookieService} from 'ngx-cookie-service';
+import {HAS_SESSION} from '../../shared/constants/cookie.constants';
 
 @Injectable({
   providedIn: 'root'
@@ -61,17 +62,17 @@ export class AccountService {
       if (userAccount) {
         this.user = userAccount;
         this.userAuthenticated = true;
-        this.cookieService.delete('HAS-SESSION');
-        this.cookieService.set('HAS-SESSION', '1');
+        this.cookieService.delete(HAS_SESSION);
+        this.cookieService.set(HAS_SESSION, '1');
       } else {
-        this.cookieService.delete('USER-HAS-SESSION');
+        this.cookieService.delete(HAS_SESSION);
         this.user = null;
         this.userAuthenticated  = false;
       }
 
       return this.user;
     }, (rejected: any) => {
-      this.cookieService.delete('HAS-SESSION');
+      this.cookieService.delete(HAS_SESSION);
       this.user = null;
       this.userAuthenticated = false;
       return this.user;

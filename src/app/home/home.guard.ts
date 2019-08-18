@@ -5,6 +5,7 @@ import {AccountService} from '../core/auth/account.service';
 import {IUser} from '../shared/model/user.model';
 import {CookieService} from 'ngx-cookie-service';
 import {LoginService} from '../authentication/login/login.service';
+import {HAS_SESSION} from '../shared/constants/cookie.constants';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +28,7 @@ export class HomeGuard implements CanActivate {
 
     // CHECK FIRST IF THERE IS A SESSION COOKIE
 
-    if (this.cookieService.check('HAS-SESSION')) {
+    if (this.cookieService.check(HAS_SESSION)) {
       return this.accountService.identify().then((account: IUser) => {
         if (account) {
           // validate by authorities

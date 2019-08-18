@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import {AccountService} from '../../core/auth/account.service';
 import {IUser} from '../../shared/model/user.model';
 import {CookieService} from 'ngx-cookie-service';
+import {HAS_SESSION} from '../../shared/constants/cookie.constants';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +25,7 @@ export class RegisterGuard implements CanActivate {
     // false: user can activate Login component
     // true: redirect to /home
 
-    if (this.cookieService.check('HAS-SESSION')) {
+    if (this.cookieService.check(HAS_SESSION)) {
       return this.accountService.identify().then((user: IUser) => {
         if (user) {
           if (user.hasToken) {

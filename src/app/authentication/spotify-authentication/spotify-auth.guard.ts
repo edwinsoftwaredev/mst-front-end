@@ -5,6 +5,7 @@ import {AccountService} from '../../core/auth/account.service';
 import {IUser} from '../../shared/model/user.model';
 import {CookieService} from 'ngx-cookie-service';
 import {LoginService} from '../login/login.service';
+import {HAS_SESSION} from '../../shared/constants/cookie.constants';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +23,7 @@ export class SpotifyAuthGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-    if (!this.cookieService.check('HAS-SESSION')) {
+    if (!this.cookieService.check(HAS_SESSION)) {
       this.loginService.logout();
       return Promise.resolve(false);
     }
