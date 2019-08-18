@@ -48,7 +48,7 @@ export class AccountService {
     }
 
     if (this.user) {
-      return Promise.reject(this.user);
+      return Promise.resolve(this.user);
     }
 
     return this.fetch().toPromise().then((res: HttpResponse<IUser>) => {
