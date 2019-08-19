@@ -3,7 +3,6 @@ import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Route
 import { Observable } from 'rxjs';
 import {AccountService} from '../../core/auth/account.service';
 import {IUser} from '../../shared/model/user.model';
-import {CookieService} from 'ngx-cookie-service';
 import {LoginService} from '../login/login.service';
 import {HAS_SESSION} from '../../shared/constants/cookie.constants';
 
@@ -15,7 +14,6 @@ export class SpotifyAuthGuard implements CanActivate {
   constructor(
     private accountService: AccountService,
     private router: Router,
-    private cookieService: CookieService,
     private loginService: LoginService
   ) {}
 
@@ -23,7 +21,7 @@ export class SpotifyAuthGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-    if (!this.cookieService.check(HAS_SESSION)) {
+    if (!sessionStorage.getItem(HAS_SESSION)) {
       this.loginService.logout();
       return Promise.resolve(false);
     }

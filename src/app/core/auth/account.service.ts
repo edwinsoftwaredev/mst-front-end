@@ -3,7 +3,6 @@ import {HttpClient, HttpResponse} from '@angular/common/http';
 import {SERVER_API_URL} from '../../shared/app-constants';
 import {Observable} from 'rxjs';
 import {IUser} from '../../shared/model/user.model';
-import {CookieService} from 'ngx-cookie-service';
 import {HAS_SESSION} from '../../shared/constants/cookie.constants';
 
 @Injectable({
@@ -15,8 +14,7 @@ export class AccountService {
   private userAuthenticated: boolean;
 
   constructor(
-    private httpClient: HttpClient,
-    private cookieService: CookieService
+    private httpClient: HttpClient
   ) { }
 
   /**
@@ -63,18 +61,18 @@ export class AccountService {
         this.user = userAccount;
         this.userAuthenticated = true;
 
-        if (!this.cookieService.check(HAS_SESSION)) {
-          this.cookieService.set(HAS_SESSION, '1');
+        if (!sessionStorage.getItem(HAS_SESSION)) {
+          sessionStorage.setItem(HAS_SESSION, '1');
         }
       } else {
-        this.cookieService.delete(HAS_SESSION);
+        sessionStorage.removeItem(HAS_SESSION);
         this.user = null;
         this.userAuthenticated  = false;
       }
 
       return this.user;
     }, (rejected: any) => {
-      this.cookieService.delete(HAS_SESSION);
+      sessionStorage.removeItem(HAS_SESSION);
       this.user = null;
       this.userAuthenticated = false;
       return this.user;

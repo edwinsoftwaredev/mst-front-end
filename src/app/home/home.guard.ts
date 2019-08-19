@@ -3,7 +3,6 @@ import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Route
 import { Observable } from 'rxjs';
 import {AccountService} from '../core/auth/account.service';
 import {IUser} from '../shared/model/user.model';
-import {CookieService} from 'ngx-cookie-service';
 import {LoginService} from '../authentication/login/login.service';
 import {HAS_SESSION} from '../shared/constants/cookie.constants';
 
@@ -14,7 +13,6 @@ export class HomeGuard implements CanActivate {
   constructor(
     private accountService: AccountService,
     private router: Router,
-    private cookieService: CookieService,
     private loginService: LoginService) {}
 
   canActivate(
@@ -28,7 +26,7 @@ export class HomeGuard implements CanActivate {
 
     // CHECK FIRST IF THERE IS A SESSION COOKIE
 
-    if (this.cookieService.check(HAS_SESSION)) {
+    if (sessionStorage.getItem(HAS_SESSION)) {
       return this.accountService.identify().then((account: IUser) => {
         if (account) {
           // validate by authorities

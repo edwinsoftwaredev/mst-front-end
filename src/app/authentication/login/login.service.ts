@@ -5,7 +5,6 @@ import {AccountService} from '../../core/auth/account.service';
 import {Router} from '@angular/router';
 import {MatSnackBar} from '@angular/material';
 import {Observable, Subject} from 'rxjs';
-import {CookieService} from 'ngx-cookie-service';
 import {HAS_SESSION} from '../../shared/constants/cookie.constants';
 
 @Injectable({
@@ -20,8 +19,7 @@ export class LoginService {
     private httpClient: HttpClient,
     private accountService: AccountService,
     private router: Router,
-    private snackBar: MatSnackBar,
-    private cookieService: CookieService
+    private snackBar: MatSnackBar
   ) { }
 
   /**
@@ -75,20 +73,20 @@ export class LoginService {
    * Spring, with Basic Authentication, to logout a user.
    */
   logout() {
-    if (this.cookieService.check(HAS_SESSION)) {
+    if (sessionStorage.getItem(HAS_SESSION)) {
       this.httpClient
         .post(SERVER_API_URL + 'api/logout', {}, {observe: 'response'})
         .subscribe((response) => {
-          this.cookieService.delete(HAS_SESSION);
+          sessionStorage.removeItem(HAS_SESSION);
           this.accountService.authenticate(null);
           this.router.navigateByUrl('/authenticate/login');
         }, ((error: HttpErrorResponse) => {
-          this.cookieService.delete(HAS_SESSION);
+          sessionStorage.removeItem(HAS_SESSION);
           this.accountService.authenticate(null);
           this.router.navigateByUrl('/authenticate/login');
         }));
     } else {
-      this.cookieService.delete(HAS_SESSION);
+      sessionStorage.removeItem(HAS_SESSION);
       this.accountService.authenticate(null);
       this.router.navigateByUrl('/authenticate/login');
     }
