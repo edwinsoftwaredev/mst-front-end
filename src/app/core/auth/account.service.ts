@@ -62,8 +62,10 @@ export class AccountService {
       if (userAccount) {
         this.user = userAccount;
         this.userAuthenticated = true;
-        this.cookieService.delete(HAS_SESSION);
-        this.cookieService.set(HAS_SESSION, '1');
+
+        if (!this.cookieService.check(HAS_SESSION)) {
+          this.cookieService.set(HAS_SESSION, '1');
+        }
       } else {
         this.cookieService.delete(HAS_SESSION);
         this.user = null;

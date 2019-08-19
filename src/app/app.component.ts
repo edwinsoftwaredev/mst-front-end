@@ -12,7 +12,7 @@ export class AppComponent {
   // testing getCsrfToken
   constructor(private csrfToken: CsrfTokenService) {
     this.csrfToken.isTokenPresent().then((res: any) => {
-      console.log(res);
+      // console.log(res);
     }, (reason: any) => {
       console.log(reason);
     }).catch((reason: any) => {
