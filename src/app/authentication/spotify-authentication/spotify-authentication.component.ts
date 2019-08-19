@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {LoginService} from '../login/login.service';
 import {SpotifyAuthenticationService} from './spotify-authentication.service';
-import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
-import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-spotify-authentication',
@@ -21,12 +19,13 @@ export class SpotifyAuthenticationComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private loginService: LoginService,
-    private spotifyAuthenticationService: SpotifyAuthenticationService,
-    private snackBar: MatSnackBar) { }
+    private spotifyAuthenticationService: SpotifyAuthenticationService
+  ) { }
 
   ngOnInit() { }
 
   openSpotifyAuth() {
+    console.log('click');
     this.spotifyAuthenticationService.spotifyAuthStart();
   }
 
