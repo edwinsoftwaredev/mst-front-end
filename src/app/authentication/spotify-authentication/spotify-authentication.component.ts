@@ -12,8 +12,6 @@ import {MatSnackBar} from '@angular/material';
 })
 export class SpotifyAuthenticationComponent implements OnInit {
 
-  private clienId: string;
-
   /**
    * this component needs a canActivate guard to ensure that it can be access
    * only when user is authenticated
@@ -26,19 +24,10 @@ export class SpotifyAuthenticationComponent implements OnInit {
     private spotifyAuthenticationService: SpotifyAuthenticationService,
     private snackBar: MatSnackBar) { }
 
-  ngOnInit() {
-    this.spotifyAuthenticationService.getClientId().subscribe((res: HttpResponse<string>) => {
-      if (res.body) {
-        this.clienId = res.body;
-      } else {
-        this.snackBar.open('There was an error. Try later. 🗨', '', {duration: 5000});
-        this.loginService.logout();
-      }
-    }, (error: HttpErrorResponse) => {
-      console.log(error.message);
-      this.snackBar.open('There was an error. Try later. 🗨', '', {duration: 5000});
-      this.loginService.logout();
-    });
+  ngOnInit() { }
+
+  openSpotifyAuth() {
+    this.spotifyAuthenticationService.spotifyAuthStart();
   }
 
   logout() {
