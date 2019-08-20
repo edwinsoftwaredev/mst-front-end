@@ -20,13 +20,16 @@ export class SpotifyAuthenticationService {
   /**
    * method to get the spotify client id
    */
-  getClientId(): Observable<HttpResponse<string>> {
-    return this.httpClient.get<string>(SERVER_API_URL + 'api/client-id', {observe: 'response'});
+  getClientId(): Observable<HttpResponse<any>> {
+    return this.httpClient.get(SERVER_API_URL + 'api/client-id', {observe: 'response'});
   }
 
   // method to iniatilize the spotify authentication
   spotifyAuthStart() {
-    this.getClientId().subscribe((res: HttpResponse<string>) => {
+    this.getClientId().subscribe((res: HttpResponse<any>) => {
+
+      console.log(res);
+
       if (res.body) {
 
         // if client id is returned then:
