@@ -4,6 +4,7 @@ import {Observable} from 'rxjs';
 import {SERVER_API_URL, SPOTIFY_AUTH_URL} from '../../shared/app-constants';
 import {LoginService} from '../login/login.service';
 import {MatSnackBar} from '@angular/material';
+import {Router, UrlSerializer} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,9 @@ export class SpotifyAuthenticationService {
     private httpClient: HttpClient,
     private loginService: LoginService,
     private snackBar: MatSnackBar,
-    private tokenExtractor: HttpXsrfTokenExtractor
+    private tokenExtractor: HttpXsrfTokenExtractor,
+    private router: Router,
+    private urlSerializer: UrlSerializer
   ) { }
 
   /**
@@ -48,25 +51,19 @@ export class SpotifyAuthenticationService {
 
   private spotifyAuth(clientId: string) {
 
-    const stateToken = btoa(btoa(this.tokenExtractor.getToken().replace('-', '')));
+    const stateToken = atob(atob(this.tokenExtractor.getToken().replace('-', ''))).substr(0, 10);
 
-    this.httpClient.get(
-      SPOTIFY_AUTH_URL,
-      {
-        params: {
-          client_id: clientId,
-          response_type: 'code',
-          redirect_uri: 'https://plugtify.com/authenticate/connect-spotify',
-          state: stateToken,
-          scope: 'user-read-private user-read-email'
-        }
+    const routeToSpotify = this.router.createUrlTree([SPOTIFY_AUTH_URL], {
+      queryParams: {
+        client_id: clientId,
+        response_type: 'code',
+        redirect_uri: 'https://plugtify.com/authenticate/connect-spotify',
+        state: stateToken,
+        scope: 'user-read-private user-read-email'
       }
-    ).subscribe((res: HttpResponse<any>) => {
-      console.log(res);
-    }, (error: HttpErrorResponse) => {
-      console.log(error);
-      this.loginService.logout();
     });
+
+    window.location.href = this.urlSerializer.serialize(routeToSpotify);
 
   }
 }
