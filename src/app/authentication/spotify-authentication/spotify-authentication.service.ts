@@ -33,7 +33,7 @@ export class SpotifyAuthenticationService {
       if (res.body) {
 
         // if client id is returned then:
-        this.spotifyAuth(res.body);
+        this.spotifyAuth(res.body.clientId);
 
       } else {
         this.snackBar.open('There was an error. Try later. 🗨', '', {duration: 5000});
