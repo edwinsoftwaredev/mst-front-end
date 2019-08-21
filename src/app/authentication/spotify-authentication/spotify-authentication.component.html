@@ -12,7 +12,7 @@
         <span style="font-size: 10pt;"><i><strong>Plugtify</strong></i> will not have access to sensitive information from your Spotify account(Password, Billing Information and other similar data).</span>
       </mat-card-content>
       <mat-card-actions>
-        <button matRipple matRippleColor="white" mat-button mat-flat-button type="button" class="btn-connect-spotify" color="primary" (click)="openSpotifyAuth()" [disabled]="btnConnectSpotifyEnable">Connect with <img src="../../../assets/images/spotify-brand.svg" width="82px" style="transform: translateY(-2px);"></button>
+        <button matRipple matRippleColor="white" mat-button mat-flat-button type="button" class="btn-connect-spotify" color="primary" (click)="openSpotifyAuth()" [disabled]="!btnConnectSpotifyEnable">Connect with <img src="../../../assets/images/spotify-brand.svg" width="82px" style="transform: translateY(-2px);"></button>
         <button mat-button mat-flat-button type="button" style="margin-top: 10px;" (click)="logout()">Log Out</button>
       </mat-card-actions>
     </form>
