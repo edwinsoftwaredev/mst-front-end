@@ -28,7 +28,7 @@ export class SpotifyAuthGuard implements CanActivate {
         if (user) {
           if (!user.hasToken) {
             if (next.queryParams.code) {
-              const checkState = atob(atob(this.tokenExtractor.getToken().replace('-', ''))).substr(0, 10);
+              const checkState = btoa(btoa(this.tokenExtractor.getToken().replace('-', '').substr(0, 10)));
               if (next.queryParams.state === checkState) {
                 // success: here is where the spotify code needs to be send to the backend
                 this.router.navigateByUrl('/home');

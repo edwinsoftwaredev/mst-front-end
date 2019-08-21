@@ -51,7 +51,7 @@ export class SpotifyAuthenticationService {
 
   private spotifyAuth(clientId: string) {
 
-    const stateToken = atob(atob(this.tokenExtractor.getToken().replace('-', ''))).substr(0, 10);
+    const stateToken = btoa(btoa(this.tokenExtractor.getToken().replace('-', '').substr(0, 10)));
 
     const routeToSpotify = this.router.createUrlTree([SPOTIFY_AUTH_URL], {
       queryParams: {
