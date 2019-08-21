@@ -60,7 +60,8 @@ export class SpotifyAuthenticationService {
         redirect_uri: 'https://plugtify.com/authenticate/connect-spotify',
         state: stateToken,
         scope: 'user-read-private user-read-email'
-      }
+      },
+      relativeTo: null
     });
 
     window.location.href = this.urlSerializer.serialize(routeToSpotify);
