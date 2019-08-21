@@ -23,10 +23,7 @@ export class SpotifyAuthGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-    if (next.queryParams) {
-
-      console.log(next.queryParams);
-
+    if (Object.entries(next.queryParams).length !== 0 && next.queryParams.constructor === Object) {
       return this.accountService.identify().then((user: IUser) => {
         if (user) {
           if (!user.hasToken) {
