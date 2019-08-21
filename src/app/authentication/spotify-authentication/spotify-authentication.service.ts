@@ -49,6 +49,11 @@ export class SpotifyAuthenticationService {
     });
   }
 
+  // process spotify code
+  processCode(code: string): Observable<HttpResponse<any>> {
+
+  }
+
   private spotifyAuth(clientId: string) {
 
     const stateToken = btoa(btoa(this.tokenExtractor.getToken().replace('-', '').substr(0, 10)));

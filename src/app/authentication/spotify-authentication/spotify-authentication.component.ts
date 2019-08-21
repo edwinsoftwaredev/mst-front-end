@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {LoginService} from '../login/login.service';
 import {SpotifyAuthenticationService} from './spotify-authentication.service';
+import {HttpResponse} from '@angular/common/http';
 
 @Component({
   selector: 'app-spotify-authentication',
@@ -22,10 +23,20 @@ export class SpotifyAuthenticationComponent implements OnInit {
     private spotifyAuthenticationService: SpotifyAuthenticationService
   ) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    // get authorization code if present
+    if (this.route.snapshot.queryParams.code) {
+      this.spotifyAuthenticationService
+        .processCode(this.route.snapshot.queryParams.code)
+        .subscribe((res: HttpResponse<any>) => {
+          if (res.ok) {
+            this.router.navigateByUrl('/home');
+          }
+        });
+    }
+  }
 
   openSpotifyAuth() {
-    console.log('click');
     this.spotifyAuthenticationService.spotifyAuthStart();
   }
 
