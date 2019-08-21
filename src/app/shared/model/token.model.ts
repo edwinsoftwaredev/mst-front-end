@@ -16,8 +16,8 @@ export class Token {
     public accessToken?: string,
     public tokenType?: string,
     public scope?: string,
-    expiresIn?: number,
-    refreshToken?: string,
-    user?: IUser
+    public expiresIn?: number,
+    public refreshToken?: string,
+    public user?: IUser
   ) {}
 }

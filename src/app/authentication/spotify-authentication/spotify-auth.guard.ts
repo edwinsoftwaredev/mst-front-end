@@ -6,6 +6,7 @@ import {IUser} from '../../shared/model/user.model';
 import {LoginService} from '../login/login.service';
 import {HAS_SESSION} from '../../shared/constants/cookie.constants';
 import {HttpXsrfTokenExtractor} from '@angular/common/http';
+import {SpotifyAuthenticationService} from './spotify-authentication.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,8 @@ export class SpotifyAuthGuard implements CanActivate {
     private accountService: AccountService,
     private router: Router,
     private loginService: LoginService,
-    private tokenExtractor: HttpXsrfTokenExtractor
+    private tokenExtractor: HttpXsrfTokenExtractor,
+    private spotifyAuthenticationService: SpotifyAuthenticationService
   ) {}
 
   canActivate(
