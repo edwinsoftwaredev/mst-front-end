@@ -16,6 +16,8 @@ export class SpotifyAuthenticationComponent implements OnInit {
    * only when user is authenticated
    */
 
+  btnConnectSpotifyEnable = true;
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -26,6 +28,8 @@ export class SpotifyAuthenticationComponent implements OnInit {
   ngOnInit() {
     // get authorization code if present
     if (this.route.snapshot.queryParams.code) {
+      this.btnConnectSpotifyEnable = false;
+
       this.spotifyAuthenticationService
         .processCode(this.route.snapshot.queryParams.code)
         .subscribe((res: HttpResponse<any>) => {

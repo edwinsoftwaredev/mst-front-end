@@ -6,7 +6,6 @@ import {IUser} from '../../shared/model/user.model';
 import {LoginService} from '../login/login.service';
 import {HAS_SESSION} from '../../shared/constants/cookie.constants';
 import {HttpXsrfTokenExtractor} from '@angular/common/http';
-import {SpotifyAuthenticationService} from './spotify-authentication.service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +16,7 @@ export class SpotifyAuthGuard implements CanActivate {
     private accountService: AccountService,
     private router: Router,
     private loginService: LoginService,
-    private tokenExtractor: HttpXsrfTokenExtractor,
-    private spotifyAuthenticationService: SpotifyAuthenticationService
+    private tokenExtractor: HttpXsrfTokenExtractor
   ) {}
 
   canActivate(
@@ -28,25 +26,19 @@ export class SpotifyAuthGuard implements CanActivate {
     if (Object.entries(next.queryParams).length !== 0 && next.queryParams.constructor === Object) {
       return this.accountService.identify().then((user: IUser) => {
         if (user) {
-          if (!user.hasToken) {
-            if (next.queryParams.code) {
-              const checkState = btoa(btoa(this.tokenExtractor.getToken().replace('-', '').substr(0, 10)));
-              if (next.queryParams.state === checkState) {
-                // success: here is where the spotify code needs to be send to the backend
-                this.router.navigateByUrl('/home');
-                return false;
-              } else {
-                this.loginService.logout();
-                return false;
-              }
-            } else if (next.queryParams.error) {
-              console.log(next.queryParams.error);
-              this.loginService.logout();
-              return false;
+          // here is not important if the user has tokens
+          if (next.queryParams.code) {
+            const checkState = btoa(btoa(this.tokenExtractor.getToken().replace('-', '').substr(0, 10)));
+            if (next.queryParams.state === checkState) {
+              // return true; to let the component load and process the spotify authorization
+              return true;
             } else {
               this.loginService.logout();
               return false;
             }
+          } else if (next.queryParams.error) {
+            this.loginService.logout();
+            return false;
           } else {
             this.loginService.logout();
             return false;

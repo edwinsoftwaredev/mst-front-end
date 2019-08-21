@@ -4,7 +4,6 @@ import {Observable} from 'rxjs';
 import {SERVER_API_URL, SPOTIFY_AUTH_URL} from '../../shared/app-constants';
 import {LoginService} from '../login/login.service';
 import {MatSnackBar} from '@angular/material';
-import {Router, UrlSerializer} from '@angular/router';
 import {AuthorizationCode} from '../../shared/model/authorization-code.model';
 
 @Injectable({
@@ -16,9 +15,7 @@ export class SpotifyAuthenticationService {
     private httpClient: HttpClient,
     private loginService: LoginService,
     private snackBar: MatSnackBar,
-    private tokenExtractor: HttpXsrfTokenExtractor,
-    private router: Router,
-    private urlSerializer: UrlSerializer
+    private tokenExtractor: HttpXsrfTokenExtractor
   ) { }
 
   /**
@@ -74,6 +71,5 @@ export class SpotifyAuthenticationService {
       redirectURIString + '&' +
       scopeString + '&' +
       stateString;
-
   }
 }
