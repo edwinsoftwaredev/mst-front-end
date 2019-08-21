@@ -5,6 +5,7 @@ import {SERVER_API_URL, SPOTIFY_AUTH_URL} from '../../shared/app-constants';
 import {LoginService} from '../login/login.service';
 import {MatSnackBar} from '@angular/material';
 import {Router, UrlSerializer} from '@angular/router';
+import {AuthorizationCode} from '../../shared/model/authorization-code.model';
 
 @Injectable({
   providedIn: 'root'
@@ -49,9 +50,11 @@ export class SpotifyAuthenticationService {
     });
   }
 
-  // process spotify code
+  // send spotify code to be process
   processCode(code: string): Observable<HttpResponse<any>> {
+    const authCode: AuthorizationCode = new AuthorizationCode(code);
 
+    return this.httpClient.post(SERVER_API_URL + 'api/authorization-code', authCode, {observe: 'response'});
   }
 
   private spotifyAuth(clientId: string) {

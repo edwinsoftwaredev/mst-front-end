@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {LoginService} from '../login/login.service';
 import {SpotifyAuthenticationService} from './spotify-authentication.service';
-import {HttpResponse} from '@angular/common/http';
+import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
 
 @Component({
   selector: 'app-spotify-authentication',
@@ -31,7 +31,12 @@ export class SpotifyAuthenticationComponent implements OnInit {
         .subscribe((res: HttpResponse<any>) => {
           if (res.ok) {
             this.router.navigateByUrl('/home');
+          } else {
+            this.logout();
           }
+        }, (error: HttpErrorResponse) => {
+          console.log(error);
+          this.logout();
         });
     }
   }
