@@ -7,9 +7,9 @@ export interface IAuthorizationCode {
 export class AuthorizationCode implements IAuthorizationCode {
   constructor(
     // tslint:disable-next-line:variable-name
-    public grant_type: string = 'authorization_code',
+    public grant_type?: string,
     public code?: string,
     // tslint:disable-next-line:variable-name
-    public redirect_uri: string = 'https://plugtify.com/authenticate/connect-spotify'
+    public redirect_uri?: string
   ) {}
 }

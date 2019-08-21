@@ -52,7 +52,8 @@ export class SpotifyAuthenticationService {
 
   // send spotify code to be process
   processCode(code: string): Observable<HttpResponse<any>> {
-    const authCode: AuthorizationCode = new AuthorizationCode(code);
+    const authCode: AuthorizationCode =
+      new AuthorizationCode('authorization_code', code, 'https://plugtify.com/authenticate/connect-spotify');
 
     return this.httpClient.post(SERVER_API_URL + 'api/authorization-code', authCode, {observe: 'response'});
   }
