@@ -59,7 +59,7 @@ export class SpotifyAuthenticationService {
     const clientIdString = 'client_id=' + clientId;
     const responseTypeString = 'response_type=' + 'code';
     const redirectURIString = 'redirect_uri=' + 'https://plugtify.com/authenticate/connect-spotify';
-    const scopeString = 'scope=' + 'user-read-private';
+    const scopeString = 'scope=' + 'user-read-private user-read-recently-played playlist-modify-private playlist-modify-public ';
     const stateString = 'state=' + stateToken;
 
     window.location.href = SPOTIFY_AUTH_URL + '?' +
