@@ -28,9 +28,6 @@ export class SpotifyAuthenticationService {
   // method to iniatilize the spotify authentication
   spotifyAuthStart() {
     this.getClientId().subscribe((res: HttpResponse<any>) => {
-
-      console.log(res);
-
       if (res.body) {
 
         // if client id is returned then:
