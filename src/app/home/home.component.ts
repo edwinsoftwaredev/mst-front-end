@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
           console.log(res);
         }, error => {
           console.log(error);
-          // this.loginService.logout();
+          this.loginService.logout();
         });
       }
     }, (reason: any) => {
