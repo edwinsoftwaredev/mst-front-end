@@ -25,7 +25,8 @@ export class HomeComponent implements OnInit {
         this.spotifyService.getCurrentSpotifyUser().subscribe((res: HttpResponse<ISpotifyUser>) => {
           console.log(res);
         }, error => {
-          this.loginService.logout();
+          console.log(error);
+          // this.loginService.logout();
         });
       }
     }, (reason: any) => {
