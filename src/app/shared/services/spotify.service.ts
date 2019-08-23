@@ -13,15 +13,10 @@ export class SpotifyService {
 
   constructor(
     private httpClient: HttpClient,
-    private accountService: AccountService,
-    private loginService: LoginService
+    private accountService: AccountService
   ) { }
 
   getCurrentSpotifyUser(): Observable<HttpResponse<ISpotifyUser>> {
-    if (this.accountService.isUserAuthenticated()) {
-      this.loginService.logout();
-    }
-
     return this.httpClient.get<ISpotifyUser>(SERVER_API_URL + 'api/current-user', {observe: 'response'});
   }
 }

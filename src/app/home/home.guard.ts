@@ -27,7 +27,7 @@ export class HomeGuard implements CanActivate {
     // CHECK FIRST IF THERE IS A SESSION COOKIE
 
     if (sessionStorage.getItem(HAS_SESSION)) {
-      // force is set to true to get the token related to the user
+      // force is set to true to know if user has token, after the token is set
       return this.accountService.identify(true).then((account: IUser) => {
         if (account) {
           // validate by authorities
