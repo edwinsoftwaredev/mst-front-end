@@ -42,6 +42,13 @@ export class AccountService {
   }
 
   /**
+   * method to check if user is authenticated
+   */
+  isUserAuthenticated(): boolean {
+    return this.userAuthenticated;
+  }
+
+  /**
    * Method to identify if a user is authenticated
    * @param force -> force to identify if user is authenticated in backend
    */
