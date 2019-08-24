@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.accountService.identify().then((user: IUser) => {
+    /*this.accountService.identify().then((user: IUser) => {
       if (user) {
         this.spotifyService.getCurrentSpotifyUser().subscribe((res: HttpResponse<ISpotifyUser>) => {
           console.log(res);
@@ -31,7 +31,7 @@ export class HomeComponent implements OnInit {
       }
     }, (reason: any) => {
       this.loginService.logout();
-    });
+    });*/
   }
 
   logout() {

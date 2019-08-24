@@ -1,0 +1,105 @@
+@import "~@angular/material/theming";
+
+.principal-container {
+  top: 35px;
+  right: 55px;
+  position: fixed;
+  z-index: 1000;
+}
+
+.menu-button {
+  color: white;
+  background-image: linear-gradient(to top, #2c94f9, #1790fb);
+  @include mat-elevation(8, #2c94f9, 1);
+  overflow: hidden;
+}
+
+button {
+  font-family: 'Raleway', sans-serif;
+}
+
+mat-menu {
+  overflow: hidden !important;
+}
+
+.user-pic-out {
+  width: 56px;
+  height: 56px;
+  min-height: 56px;
+  min-width: 56px;
+  background-position-x: center;
+  background-position-y: center;
+  background-size: cover;
+  background-color: white;
+  border-radius: 50%;
+  margin: auto 0px;
+  float: left;
+}
+
+.user-pic-info-out-container {
+  float: left;
+  margin: auto 20px;
+  display: flex;
+}
+
+.user-name-out {
+  float: right;
+  font-weight: bolder;
+  font-size: 16pt;
+  color: white;
+  margin: auto 15px;
+}
+
+.user-info-item {
+  height: 100px;
+  width: 250px;
+  padding: 0px 15px;
+}
+
+.pic-user-container {
+  height: 100%;
+  display: flex;
+}
+
+.user-info-item {
+  height: 100px;
+  width: 250px;
+  padding: 0px 15px;
+}
+
+.info-user {
+  float: left;
+  display: block;
+  margin: auto 0px;
+}
+
+.user-name {
+  font-size: 16pt;
+  font-weight: bolder;
+  margin: auto 10px;
+  width: 100%;
+}
+
+.user-pic {
+  width: 80px;
+  height: 80px;
+  min-width: 80px;
+  min-height: 80px;
+  background-position-x: center;
+  background-position-y: center;
+  background-color: grey;
+  background-size: cover;
+  border-radius: 50%;
+  margin: auto 0px;
+  float: left;
+}
+
+.item {
+  font-weight: bolder;
+}
+
+.emoji-icon {
+  margin-right: 20px;
+  font-size: 16px;
+  padding: 10px;
+}

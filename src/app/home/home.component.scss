@@ -1,0 +1,15 @@
+.principal-container {
+  width: 100%;
+  min-height: 100vh;
+}
+
+.background-container {
+  background-image: url("../../assets/images/max-delsid-8I6OcgjAOGg-unsplash.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: grayscale(0.3) brightness(0.4);
+  height: 100%;
+  width: 100%;
+  position: fixed;
+}

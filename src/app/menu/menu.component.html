@@ -1,1 +1,41 @@
-<p>menu works!</p>
+<div class="principal-container" *ngIf="spotifyUser">
+  <div class="user-pic-info-out-container">
+    <div class="user-name-out">
+      <span>{{spotifyUser.display_name}}</span>
+    </div>
+    <div class="user-pic-out" [ngStyle]="{'background-image': spotifyUser.images !== undefined ? 'url('+spotifyUser.images[0].url+')' : 'none'}">
+    </div>
+  </div>
+  <button mat-fab mat-button class="menu-button" matRipple matRippleColor="white" [matMenuTriggerFor]="menu">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu" overlapTrigger="true" backdropClass="backdrop-menu">
+    <div class="user-info-item">
+      <div class="pic-user-container">
+        <div class="user-pic" [ngStyle]="{'background-image': spotifyUser.images !== undefined ? 'url('+spotifyUser.images[0].url+')' : 'none'}">
+        </div>
+        <div class="info-user">
+          <div class="user-name"> <!--first name-->
+            <span>{{spotifyUser.display_name}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button mat-menu-item [routerLink]="['/home']" class="item">
+      <span class="emoji-icon">🏠</span>
+      Home
+    </button>
+    <button mat-menu-item class="item">
+      <span class="emoji-icon">⚡</span>
+      Make a Plugtify Playlist
+    </button>
+    <button mat-menu-item class="item">
+      <span class="emoji-icon">🔧</span>
+      Settings
+    </button>
+    <button style="width: 280px;" mat-menu-item (click)="logout()" class="item">
+      <span class="emoji-icon">🏁</span>
+      Log out
+    </button>
+  </mat-menu>
+</div>

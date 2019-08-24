@@ -4,8 +4,8 @@ import {HttpClientModule} from '@angular/common/http';
 import {
   MatButtonModule,
   MatCardModule,
-  MatFormFieldModule,
-  MatInputModule,
+  MatFormFieldModule, MatIconModule,
+  MatInputModule, MatMenuModule,
   MatProgressBarModule, MatRippleModule,
   MatSnackBarModule
 } from '@angular/material';
@@ -13,9 +13,12 @@ import {RouterModule} from '@angular/router';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MenuComponent} from '../menu/menu.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    MenuComponent
+  ],
   imports: [
     CommonModule,
     BrowserModule,
@@ -29,8 +32,10 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     MatInputModule,
     MatButtonModule,
     MatProgressBarModule,
+    MatIconModule,
     MatRippleModule,
-    RouterModule
+    RouterModule,
+    MatMenuModule
   ],
   exports: [
     CommonModule,
@@ -45,7 +50,9 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     MatInputModule,
     MatButtonModule,
     MatProgressBarModule,
+    MatIconModule,
     MatRippleModule,
+    MenuComponent,
     RouterModule
   ]
 })
