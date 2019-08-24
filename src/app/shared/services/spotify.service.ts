@@ -31,4 +31,8 @@ export class SpotifyService {
         return res;
       }));
   }
+
+  clearSpotifyUser(): void {
+    this.spotifyUser = null;
+  }
 }

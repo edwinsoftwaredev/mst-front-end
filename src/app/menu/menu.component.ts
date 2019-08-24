@@ -27,7 +27,7 @@ export class MenuComponent implements OnInit {
           null,
           '',
           '',
-          [new SpotifyUserImage(0, '', 0)]);
+          []);
       }
     }, (error: any) => {
       // for test only
@@ -36,7 +36,7 @@ export class MenuComponent implements OnInit {
         null,
         '',
         '',
-        [new SpotifyUserImage(0, '', 0)]);
+        []);
     });
   }
 
@@ -44,8 +44,6 @@ export class MenuComponent implements OnInit {
   }
 
   logout() {
-    // clear spotify user
-    this.spotifyUser = null;
     this.loginService.logout();
   }
 

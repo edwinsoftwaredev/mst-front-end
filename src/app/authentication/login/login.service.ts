@@ -6,6 +6,7 @@ import {Router} from '@angular/router';
 import {MatSnackBar} from '@angular/material';
 import {Observable, Subject} from 'rxjs';
 import {HAS_SESSION} from '../../shared/constants/cookie.constants';
+import {SpotifyService} from '../../shared/services/spotify.service';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,8 @@ export class LoginService {
     private httpClient: HttpClient,
     private accountService: AccountService,
     private router: Router,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private spotifyService: SpotifyService
   ) { }
 
   /**
@@ -77,15 +79,18 @@ export class LoginService {
       this.httpClient
         .post(SERVER_API_URL + 'api/logout', {}, {observe: 'response'})
         .subscribe((response) => {
+          this.spotifyService.clearSpotifyUser();
           sessionStorage.removeItem(HAS_SESSION);
           this.accountService.authenticate(null);
           this.router.navigateByUrl('/authenticate/login');
         }, ((error: HttpErrorResponse) => {
+          this.spotifyService.clearSpotifyUser();
           sessionStorage.removeItem(HAS_SESSION);
           this.accountService.authenticate(null);
           this.router.navigateByUrl('/authenticate/login');
         }));
     } else {
+      this.spotifyService.clearSpotifyUser();
       sessionStorage.removeItem(HAS_SESSION);
       this.accountService.authenticate(null);
       this.router.navigateByUrl('/authenticate/login');
