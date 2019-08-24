@@ -1,9 +1,9 @@
 <div class="principal-container" *ngIf="spotifyUser">
   <div class="user-pic-info-out-container">
     <div class="user-name-out">
-      <span>{{spotifyUser.display_name}}</span>
+      <span>{{spotifyUser.display_name.split(' ')[0]}}</span>
     </div>
-    <div class="user-pic-out" [ngStyle]="{'background-image': spotifyUser.images !== undefined ? 'url('+spotifyUser.images[0].url+')' : 'none'}">
+    <div class="user-pic-out" [ngStyle]="{'background-image': spotifyUser.images !== undefined || spotifyUser.images.length !== 0 ? 'url('+spotifyUser.images[0].url+')' : 'none'}">
     </div>
   </div>
   <button mat-fab mat-button class="menu-button" matRipple matRippleColor="white" [matMenuTriggerFor]="menu">
