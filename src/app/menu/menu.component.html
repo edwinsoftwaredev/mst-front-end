@@ -12,7 +12,7 @@
   <mat-menu #menu="matMenu" overlapTrigger="true" backdropClass="backdrop-menu">
     <div class="user-info-item">
       <div class="pic-user-container">
-        <div class="user-pic" [ngStyle]="{'background-image': spotifyUser.images !== undefined ? 'url('+spotifyUser.images[0].url+')' : 'none'}">
+        <div class="user-pic" [ngStyle]="{'background-image': spotifyUser.images !== undefined || spotifyUser.images.length !== 0 ? 'url('+spotifyUser.images[0].url+')' : 'none'}">
         </div>
         <div class="info-user">
           <div class="user-name"> <!--first name-->

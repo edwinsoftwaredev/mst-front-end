@@ -44,6 +44,8 @@ export class MenuComponent implements OnInit {
   }
 
   logout() {
+    // clear spotify user
+    this.spotifyUser = null;
     this.loginService.logout();
   }
 
