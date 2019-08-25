@@ -6,6 +6,7 @@ import {Observable, of} from 'rxjs';
 import {LoginService} from '../../authentication/login/login.service';
 import {SERVER_API_URL} from '../app-constants';
 import {map} from 'rxjs/operators';
+import {ISpotifyTrack} from '../model/spotify-track.model';
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +31,11 @@ export class SpotifyService {
         this.spotifyUser = res;
         return res;
       }));
+  }
+
+  getRecentlyPlayedTracks(): Observable<HttpResponse<Array<ISpotifyTrack>>> {
+    return this.httpClient
+      .get<Array<ISpotifyTrack>>(SERVER_API_URL + 'api/recently-played', {observe: 'response'});
   }
 
   clearSpotifyUser(): void {

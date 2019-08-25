@@ -1,10 +1,11 @@
 import {ISpotifyAlbum} from './spotify-album.model';
 import {ISpotifyArtist} from './spotify-artist.model';
 import {ISpotifyExternalUrl} from './spotify-external-url.model';
+import {ISpotifyAudioFeature} from './spotify-audio-feature.model';
 
 export interface ISpotifyTrack {
   album?: ISpotifyAlbum;
-  artist?: Array<ISpotifyArtist>;
+  artists?: Array<ISpotifyArtist>;
   duration_ms?: number;
   external_urls?: ISpotifyExternalUrl;
   id?: string;
@@ -13,6 +14,7 @@ export interface ISpotifyTrack {
   popularity?: number;
   preview_url?: string;
   type?: string;
+  audio_feature?: ISpotifyAudioFeature;
 }
 
 export class SpotifyTrack implements ISpotifyTrack {
@@ -27,6 +29,7 @@ export class SpotifyTrack implements ISpotifyTrack {
     public name?: string,
     public popularity?: number,
     public preview_url?: string,
-    public type?: string
+    public type?: string,
+    public audio_feature?: ISpotifyAudioFeature
   ) {}
 }
