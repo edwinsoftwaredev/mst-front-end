@@ -7,6 +7,18 @@
   z-index: 1000;
 }
 
+@media only screen and (max-width: 1024px) {
+  .principal-container {
+    bottom: 35px !important;
+    right: 35px !important;
+    top: auto !important;
+  }
+
+  .user-pic-info-out-container {
+    display: none !important;
+  }
+}
+
 .menu-button {
   color: white;
   background-image: linear-gradient(to top, #2c94f9, #1790fb);
@@ -30,7 +42,7 @@ mat-menu {
   background-position-x: center;
   background-position-y: center;
   background-size: cover;
-  background-color: white;
+  background-color: gray;
   border-radius: 50%;
   margin: auto 0px;
   float: left;
@@ -98,8 +110,7 @@ mat-menu {
   font-weight: bolder;
 }
 
-.emoji-icon {
-  margin-right: 20px;
-  font-size: 16px;
+.icon-item {
+  font-size: 24px;
   padding: 10px;
 }

@@ -15,4 +15,5 @@ body {
 
 .backdrop-menu {
   background-color: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(5px);
 }
