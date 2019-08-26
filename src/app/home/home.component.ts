@@ -12,9 +12,6 @@ import {ISpotifyTrack} from '../shared/model/spotify-track.model';
 })
 export class HomeComponent implements OnInit {
 
-  // to test
-  recentlyPlayedTracks: Array<ISpotifyTrack> = [];
-
   constructor(
     private accountService: AccountService,
     private loginService: LoginService,
@@ -34,18 +31,6 @@ export class HomeComponent implements OnInit {
     }, (reason: any) => {
       this.loginService.logout();
     });*/
-    // for testing
-    this.getRecentlyPlayedTracks();
-  }
-
-  getRecentlyPlayedTracks() {
-    this.spotifyService.getRecentlyPlayedTracks().subscribe((res: HttpResponse<Array<ISpotifyTrack>>) => {
-      if (res.body) {
-        this.recentlyPlayedTracks = res.body;
-      }
-    }, (error: HttpErrorResponse) => {
-      console.log(error);
-    });
   }
 
   logout() {

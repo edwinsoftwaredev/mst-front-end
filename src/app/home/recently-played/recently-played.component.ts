@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
+import {ISpotifyTrack} from '../../shared/model/spotify-track.model';
+import {SpotifyService} from '../../shared/services/spotify.service';
 
 @Component({
   selector: 'app-recently-played',
@@ -7,9 +10,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RecentlyPlayedComponent implements OnInit {
 
-  constructor() { }
+  recentlyPlayedTracks: Array<ISpotifyTrack> = [];
+
+  constructor(
+    private spotifyService: SpotifyService
+  ) { }
 
   ngOnInit() {
   }
 
+  getRecentlyPlayedTracks() {
+    this.spotifyService.getRecentlyPlayedTracks().subscribe((res: HttpResponse<Array<ISpotifyTrack>>) => {
+      if (res.body) {
+        this.recentlyPlayedTracks = res.body;
+      }
+    }, (error: HttpErrorResponse) => {
+      console.log(error);
+    });
+  }
 }

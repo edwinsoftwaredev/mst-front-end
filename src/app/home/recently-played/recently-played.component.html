@@ -1,1 +1,34 @@
-<p>recently-played works!</p>
+<div class="your-latest-tracks-container">
+  <div class="bar-last-tracks">
+    <span>Recently Played Tracks</span>
+    <button mat-button mat-raised-button>
+      <mat-icon>playlist_add</mat-icon>
+      Add playlist to Spotify
+    </button>
+  </div>
+  <mat-card [class.mat-elevation-z5]="true">
+    <mat-card-content>
+      <mat-nav-list>
+        <a mat-list-item *ngFor="let track of recentlyPlayedTracks; let i = index">
+          <mat-divider></mat-divider>
+          <span class="number-track">{{i + 1}} -</span>
+          <div class="track-container">
+            <div class="image-track" [ngStyle]="{'background-image': track.album.images !== undefined && track.album.images.length !== 0 ? 'url('+track.album.images[0].url+')' : 'none'}"></div>
+            <div class="info-track">
+              <div class="title-track">
+                <span>{{track.name}}</span>
+                <div class="duration-track"><span><i>({{track.duration_ms}} min)</i></span></div>
+              </div>
+              <div class="album-track"><span>{{track.album.name}}</span></div>
+              <div class="artists-track"><span>{{track.artists.toString()}}</span></div>
+              <div class="options-track-container">
+                <button mat-button class="play-spotify"><mat-icon>play_arrow</mat-icon> Play on <img src="../../../assets/images/spotify-brand.svg" width="75px" style="transform: translateY(0px);"></button>
+              </div>
+            </div>
+          </div>
+          <mat-divider></mat-divider>
+        </a>
+      </mat-nav-list>
+    </mat-card-content>
+  </mat-card>
+</div>
