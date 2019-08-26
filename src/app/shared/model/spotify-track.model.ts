@@ -5,8 +5,8 @@ import {ISpotifyAudioFeature} from './spotify-audio-feature.model';
 
 export interface ISpotifyTrack {
   album?: ISpotifyAlbum;
-  artists?: Array<ISpotifyArtist>;
-  duration_ms?: number;
+  artists?: Array<ISpotifyArtist> | string;
+  duration_ms?: number | string;
   external_urls?: ISpotifyExternalUrl;
   id?: string;
   is_playable?: boolean;
@@ -21,8 +21,8 @@ export class SpotifyTrack implements ISpotifyTrack {
   // tslint:disable
   constructor(
     public album?: ISpotifyAlbum,
-    public artist?: Array<ISpotifyArtist>,
-    public duration_ms?: number,
+    public artist?: Array<ISpotifyArtist> | string,
+    public duration_ms?: number | string,
     public external_urls?: ISpotifyExternalUrl,
     public id?: string,
     public is_playable?: boolean,

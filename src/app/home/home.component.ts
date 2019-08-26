@@ -2,9 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {LoginService} from '../authentication/login/login.service';
 import {SpotifyService} from '../shared/services/spotify.service';
 import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
-import {ISpotifyUser} from '../shared/model/spotify-user.model';
 import {AccountService} from '../core/auth/account.service';
-import {IUser} from '../shared/model/user.model';
 import {ISpotifyTrack} from '../shared/model/spotify-track.model';
 
 @Component({
@@ -53,5 +51,4 @@ export class HomeComponent implements OnInit {
   logout() {
     this.loginService.logout();
   }
-
 }

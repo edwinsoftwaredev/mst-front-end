@@ -78,6 +78,14 @@ mat-nav-list > a {
   float: left;
   font-family: 'Raleway', sans-serif;
   margin-left: 15px;
+  display: grid;
+}
+
+.title-track > span {
+  white-space: nowrap;
+  max-width: 70%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .title-track {
@@ -99,6 +107,9 @@ mat-nav-list > a {
   color: whitesmoke;
   font-size: 14pt;
   font-weight: bolder;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .artists-track {
@@ -117,7 +128,7 @@ mat-nav-list > a {
 }
 
 .number-track {
-  position: relative;
+  position: absolute;
   left: -80px;
   font-size: 20pt;
   margin-right: -30px;
