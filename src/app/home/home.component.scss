@@ -61,36 +61,41 @@ mat-nav-list > a {
 .image-track {
   width: 130px;
   height: 130px;
-  background-color: dimgray;
+  background-color: #696969;
   background-position: center;
   background-size: cover;
   float: left;
   margin: auto;
+  min-width: 130px;
+  min-height: 130px;
 }
 
 .track-container {
   padding: 20px;
-  margin: auto 0px;
+  margin: auto 0;
   display: flex;
+  overflow: hidden;
 }
 
 .info-track {
   float: left;
-  font-family: 'Raleway', sans-serif;
+  font-family: Raleway,sans-serif;
   margin-left: 15px;
   display: grid;
+  width: 100%;
+  min-width: 100%;
 }
 
 .title-track > span {
   white-space: nowrap;
-  max-width: 70%;
+  max-width: 60%;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .title-track {
   float: left;
-  color: whitesmoke;
+  color: #f5f5f5;
   font-weight: bolder;
   font-size: 17pt;
   display: flex;
@@ -104,12 +109,13 @@ mat-nav-list > a {
 }
 
 .album-track {
-  color: whitesmoke;
+  color: #f5f5f5;
   font-size: 14pt;
   font-weight: bolder;
-  width: 100%;
+  max-width: 70%;
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .artists-track {
@@ -117,6 +123,10 @@ mat-nav-list > a {
   font-weight: bolder;
   color: #414141;
   margin-top: 15px;
+  max-width: 70%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .play-spotify {
