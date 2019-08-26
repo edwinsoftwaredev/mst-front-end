@@ -5,7 +5,6 @@ export interface ISpotifyAlbum {
   images?: Array<ISpotifyImageAlbum>;
   name?: string;
   type?: string;
-  uri?: string;
 }
 
 export class SpotifyAlbum  implements ISpotifyAlbum {
@@ -13,7 +12,6 @@ export class SpotifyAlbum  implements ISpotifyAlbum {
     public id?: string,
     public images?: Array<ISpotifyImageAlbum>,
     public name?: string,
-    public type?: string,
-    public uri?: string
+    public type?: string
   ) {}
 }
