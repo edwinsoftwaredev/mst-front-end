@@ -4,6 +4,7 @@ import {SpotifyService} from '../shared/services/spotify.service';
 import {HttpResponse} from '@angular/common/http';
 import {SpotifyUserImage} from '../shared/model/spotify-user-image.model';
 import {LoginService} from '../authentication/login/login.service';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -16,7 +17,9 @@ export class MenuComponent implements OnInit {
 
   constructor(
     private spotifyService: SpotifyService,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private router: Router,
+    private route: ActivatedRoute
   ) {
     this.spotifyService.getCurrentSpotifyUser().subscribe((res: HttpResponse<ISpotifyUser>) => {
       if (res.body) {
@@ -41,6 +44,18 @@ export class MenuComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  goHome(): void {
+    this.router.navigate(['../'], {relativeTo: this.route});
+  }
+
+  goRecentlyPlayed(): void {
+    this.router.navigate(['../recently-played'], {relativeTo: this.route});
+  }
+
+  goMakePlaylist(): void {
+    this.router.navigate(['../make-playlist'], {relativeTo: this.route});
   }
 
   logout() {

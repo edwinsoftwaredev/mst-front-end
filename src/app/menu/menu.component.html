@@ -25,13 +25,13 @@
       <mat-icon class="icon-item">home</mat-icon>
       Home
     </button>
-    <button mat-menu-item class="item">
-      <mat-icon class="icon-item">featured_play_list</mat-icon>
-      Make a Plugtify Playlist
-    </button>
-    <button mat-menu-item class="item">
+    <button mat-menu-item class="item" [routerLink]="['home/recently-played']">
       <mat-icon class="icon-item">library_music</mat-icon>
       Recently Played Tracks
+    </button>
+    <button mat-menu-item class="item" [routerLink]="['/home/make-playlist']">
+      <mat-icon class="icon-item">featured_play_list</mat-icon>
+      Make a Plugtify Playlist
     </button>
     <button mat-menu-item class="item">
       <mat-icon class="icon-item">settings_applications</mat-icon>
