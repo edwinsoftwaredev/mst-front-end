@@ -17,11 +17,12 @@ export class RecentlyPlayedComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.getRecentlyPlayedTracks();
   }
 
   getRecentlyPlayedTracks() {
     this.spotifyService.getRecentlyPlayedTracks().subscribe((res: HttpResponse<Array<ISpotifyTrack>>) => {
-      if (res.body) {
+      if (res.body.length !== 0) {
         this.recentlyPlayedTracks = res.body;
       }
     }, (error: HttpErrorResponse) => {

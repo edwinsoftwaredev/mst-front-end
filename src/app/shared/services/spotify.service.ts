@@ -33,6 +33,24 @@ export class SpotifyService {
       }));
   }
 
+  getSuggestedPlaylist(): Observable<HttpResponse<Array<ISpotifyTrack>>> {
+    return this.httpClient
+      .get<Array<ISpotifyTrack>>(SERVER_API_URL + 'api/suggested-playlist', {observe: 'response'})
+      .pipe(map((trackArrayRes: HttpResponse<Array<ISpotifyTrack>>) => {
+        if (trackArrayRes.body) {
+          trackArrayRes.body.forEach((track: ISpotifyTrack) => {
+            track.duration_ms = this.getTimeTrack(track.duration_ms as number);
+            track.artists = (track.artists as Array<ISpotifyArtist>)
+              .map((trackArtist: ISpotifyArtist) => trackArtist.name).join(', ') as string;
+
+            return track;
+          });
+        }
+
+        return trackArrayRes;
+      }));
+  }
+
   getRecentlyPlayedTracks(): Observable<HttpResponse<Array<ISpotifyTrack>>> {
     return this.httpClient
       .get<Array<ISpotifyTrack>>(SERVER_API_URL + 'api/recently-played', {observe: 'response'})
