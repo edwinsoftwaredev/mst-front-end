@@ -43,7 +43,8 @@ export class SpotifyService {
         if (trackArrayRes.body) {
           trackArrayRes.body.forEach((track: ISpotifyTrack) => {
             track.duration_ms = this.getTimeTrack(track.duration_ms as number); // from backend we get a "number"
-            track.artists = (track.artists as Array<ISpotifyArtist>).join(', ') as string;
+            track.artists = (track.artists as Array<ISpotifyArtist>)
+              .map((trackArtist: ISpotifyArtist) => trackArtist.name).join(', ') as string;
             // we get a string with the artist separeted with a ,. from backen we get an array of artists
             return track;
           });

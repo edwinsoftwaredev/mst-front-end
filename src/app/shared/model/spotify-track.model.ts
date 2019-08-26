@@ -21,7 +21,7 @@ export class SpotifyTrack implements ISpotifyTrack {
   // tslint:disable
   constructor(
     public album?: ISpotifyAlbum,
-    public artist?: Array<ISpotifyArtist> | string,
+    public artists?: Array<ISpotifyArtist> | string,
     public duration_ms?: number | string,
     public external_urls?: ISpotifyExternalUrl,
     public id?: string,
