@@ -1,5 +1,25 @@
 <div class="background-container"></div> <!--Background-->
 <div class="principal-container">
   <app-menu></app-menu>
+  <div class="settings-container">
+    <div class="bar-title">
+      <span>Settings</span>
+      <!--<button mat-button mat-raised-button>
+        <mat-icon>playlist_add</mat-icon>
+        Add playlist to Spotify
+      </button>-->
+    </div>
+    <mat-card>
+      <mat-card-content>
+        <mat-list>
+          <mat-list-item>
+            <span class="item-span">Delete Plugtify Account</span>
+            <div style="flex: 1 1 0"></div>
+            <button class="btn-delete-account" mat-button color="warn" (click)="deleteAccount()">Delete Account</button>
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+    </mat-card>
+  </div>
 </div>
 

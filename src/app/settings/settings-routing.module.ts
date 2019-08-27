@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {SettingsComponent} from './settings.component';
+import {SettingsGuard} from './settings.guard';
 
 
 const routes: Routes = [
   {
     path: 'settings',
-    component: SettingsComponent
+    component: SettingsComponent,
+    // canActivate: [SettingsGuard]
   }
 ];
 

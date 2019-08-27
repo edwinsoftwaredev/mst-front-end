@@ -1,15 +1,53 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
+import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router} from '@angular/router';
 import { Observable } from 'rxjs';
+import {AccountService} from '../core/auth/account.service';
+import {HAS_SESSION} from '../shared/constants/cookie.constants';
+import {LoginService} from '../authentication/login/login.service';
+import {IUser} from '../shared/model/user.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SettingsGuard implements CanActivate {
+  constructor(
+    private accountService: AccountService,
+    private loginService: LoginService,
+    private router: Router
+  ) {}
+
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return true;
+    return this.checkAuthentication();
   }
-  
+
+  checkAuthentication(): Promise<boolean> {
+
+    if (sessionStorage.getItem(HAS_SESSION)) {
+      // force is set to true to know if user has token, after the token is set
+      return this.accountService.identify(true).then((account: IUser) => {
+        if (account) {
+          // validate by authorities
+
+          // validate if user have spotify tokens
+          if (account.hasToken) {
+            return true;
+          } else {
+            this.router.navigateByUrl('/authenticate/connect-spotify');
+            return false;
+          }
+        }
+        this.loginService.logout();
+        return false;
+      }, (rejected: any) => {
+        this.loginService.logout();
+        return false;
+      });
+    } else {
+      this.loginService.logout();
+      return Promise.resolve(false);
+    }
+  }
 }
+

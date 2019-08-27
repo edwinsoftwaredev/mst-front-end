@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {MatSnackBar, MatSnackBarDismiss} from '@angular/material';
+import {AccountService} from '../core/auth/account.service';
+import {LoginService} from '../authentication/login/login.service';
+import {HttpErrorResponse} from '@angular/common/http';
 
 @Component({
   selector: 'app-settings',
@@ -7,9 +11,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SettingsComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private snackbar: MatSnackBar,
+    private accountService: AccountService,
+    private loginService: LoginService
+  ) { }
 
   ngOnInit() {
   }
 
+  deleteAccount() {
+    this.snackbar.open('Are you sure you want to delete you account?', 'Yes', {duration: 5000})
+      .onAction().subscribe(() => {
+
+        this.accountService.delete().then(() => {
+          this.snackbar.open('Account Deleted', '', {duration: 1000});
+        }, (error: HttpErrorResponse) => {
+          this.snackbar.open('There was a problem while trying to delete your account. Try later.', '', {duration: 5000});
+        });
+
+        this.loginService.logout();
+      });
+  }
 }

@@ -4,6 +4,7 @@ import {SERVER_API_URL} from '../../shared/app-constants';
 import {Observable} from 'rxjs';
 import {IUser} from '../../shared/model/user.model';
 import {HAS_SESSION} from '../../shared/constants/cookie.constants';
+import {map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
