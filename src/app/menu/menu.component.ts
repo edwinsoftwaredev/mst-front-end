@@ -51,11 +51,11 @@ export class MenuComponent implements OnInit {
   }
 
   goRecentlyPlayed(): void {
-    this.router.navigate(['../recently-played'], {relativeTo: this.route});
+    this.router.navigate(['home/recently-played'], {relativeTo: this.route});
   }
 
   goMakePlaylist(): void {
-    this.router.navigate(['../make-playlist'], {relativeTo: this.route});
+    this.router.navigate(['home/make-playlist'], {relativeTo: this.route});
   }
 
   logout() {
