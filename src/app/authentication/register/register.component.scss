@@ -1,3 +1,5 @@
+@import "~@angular/material/theming";
+
 .principal-container {
   display: flex;
   height: 100%;
@@ -35,6 +37,13 @@ button {
   width: 87%;
   font-family: 'Raleway', sans-serif;
   font-weight: bolder;
+}
+
+.btn-sign-up {
+  float: right;
+  color: white;
+  background-image: linear-gradient(to top, #2c94f9, #1790fb);
+  @include mat-elevation(8, #2c94f9, 1);
 }
 
 mat-hint {

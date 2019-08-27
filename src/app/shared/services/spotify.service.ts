@@ -33,6 +33,10 @@ export class SpotifyService {
       }));
   }
 
+  addPlaylist(tracks: Array<ISpotifyTrack>): Observable<HttpResponse<any>> {
+    return this.httpClient.post(SERVER_API_URL + 'api/add-playlist', tracks, {observe: 'response'});
+  }
+
   getSuggestedPlaylist(): Observable<HttpResponse<Array<ISpotifyTrack>>> {
     return this.httpClient
       .get<Array<ISpotifyTrack>>(SERVER_API_URL + 'api/suggested-playlist', {observe: 'response'})

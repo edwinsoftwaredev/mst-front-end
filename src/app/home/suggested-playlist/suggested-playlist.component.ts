@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {SpotifyService} from '../../shared/services/spotify.service';
 import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
 import {ISpotifyTrack} from '../../shared/model/spotify-track.model';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-suggested-playlist',
@@ -13,11 +14,22 @@ export class SuggestedPlaylistComponent implements OnInit {
   suggestedTracks: Array<ISpotifyTrack> = [];
 
   constructor(
-    private spotifyService: SpotifyService
+    private spotifyService: SpotifyService,
+    private snackBar: MatSnackBar
   ) { }
 
   ngOnInit() {
     this.getSuggestedTracks();
+  }
+
+  addPlaylist() {
+    if (this.suggestedTracks.length) {
+      this.spotifyService.addPlaylist(this.suggestedTracks).subscribe((res: HttpResponse<any>) => {
+        this.snackBar.open('Playlist saved!! 🎉🎉🎉', '', {duration: 5000});
+      }, (error: HttpErrorResponse) => {
+        console.log(error);
+      });
+    }
   }
 
   goTrack(url: string) {

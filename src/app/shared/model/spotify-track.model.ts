@@ -15,6 +15,7 @@ export interface ISpotifyTrack {
   preview_url?: string;
   type?: string;
   audio_feature?: ISpotifyAudioFeature;
+  uri?: string;
 }
 
 export class SpotifyTrack implements ISpotifyTrack {
@@ -30,6 +31,7 @@ export class SpotifyTrack implements ISpotifyTrack {
     public popularity?: number,
     public preview_url?: string,
     public type?: string,
-    public audio_feature?: ISpotifyAudioFeature
+    public audio_feature?: ISpotifyAudioFeature,
+    public uri?: string
   ) {}
 }

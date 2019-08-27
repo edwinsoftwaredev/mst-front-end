@@ -1,3 +1,5 @@
+@import "~@angular/material/theming";
+
 .principal-container {
   display: flex;
   height: 100%;
@@ -42,7 +44,9 @@ button {
 .btn-connect-spotify {
   padding: 0px;
   text-align: center;
-  background-color: #1DB954;
-  overflow: hidden; // necessary for the mat-ripple
-  color: white !important;
+  margin-top: 15px;
+  color: white;
+  background-image: linear-gradient(to top, #20d760, #1DB954);
+  @include mat-elevation(8, #20d760, 1);
+  overflow: hidden;
 }

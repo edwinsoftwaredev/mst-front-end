@@ -12,6 +12,7 @@ export interface IUser {
   createdDate?: Moment;
   lastUpdatedBy?: string;
   lastUpdatedDate?: Moment;
+  playlistId?: string;
 }
 
 export class UserModel implements IUser {
@@ -25,6 +26,7 @@ export class UserModel implements IUser {
     public createdBy?: string,
     public createdDate?: Moment,
     public lastUpdatedBy?: string,
-    public lastUpdatedDate?: Moment
+    public lastUpdatedDate?: Moment,
+    public playlistId?: string
   ) {}
 }

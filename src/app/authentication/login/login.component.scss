@@ -1,3 +1,5 @@
+@import "~@angular/material/theming";
+
 .principal-container {
   display: flex;
   height: 100%;
@@ -40,4 +42,8 @@ button {
 
 .btn-login {
   overflow: hidden; // necessary for the map-ripple
+  float: right;
+  color: white;
+  background-image: linear-gradient(to top, #2c94f9, #1790fb);
+  @include mat-elevation(8, #2c94f9, 1);
 }
