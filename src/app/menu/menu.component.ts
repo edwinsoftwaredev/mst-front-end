@@ -58,6 +58,10 @@ export class MenuComponent implements OnInit {
     this.router.navigateByUrl('/home/make-playlist');
   }
 
+  goSettings(): void {
+    this.router.navigateByUrl('/settings');
+  }
+
   logout() {
     this.loginService.logout();
   }
