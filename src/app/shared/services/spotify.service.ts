@@ -34,7 +34,7 @@ export class SpotifyService {
   }
 
   addPlaylist(tracks: Array<ISpotifyTrack>): Observable<HttpResponse<any>> {
-    tracks.map((track: ISpotifyTrack) => {
+    tracks = tracks.map((track: ISpotifyTrack) => {
       return new SpotifyTrack(track.uri, track.id);
     });
 
