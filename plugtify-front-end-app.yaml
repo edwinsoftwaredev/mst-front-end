@@ -15,7 +15,7 @@ spec:
         app: plugtify-front-end
     spec:
       containers:
-        - image: gcr.io/plugtify/plugtify-front-end:v74
+        - image: gcr.io/plugtify/plugtify-front-end:v75
           name: plugtify-front-end
           ports:
             - containerPort: 8080
