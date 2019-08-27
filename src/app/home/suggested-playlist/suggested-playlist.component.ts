@@ -20,10 +20,18 @@ export class SuggestedPlaylistComponent implements OnInit {
     this.getSuggestedTracks();
   }
 
+  goTrack(url: string) {
+    window.open(url, '_blank');
+  }
+
   getSuggestedTracks() {
     this.spotifyService.getSuggestedPlaylist().subscribe((res: HttpResponse<Array<ISpotifyTrack>>) => {
       if (res.body.length !== 0) {
-        this.suggestedTracks = res.body;
+        if (res.body.length > 40) {
+          this.suggestedTracks = res.body.slice(0, 40);
+        } else {
+          this.suggestedTracks = res.body;
+        }
       }
     }, (error: HttpErrorResponse) => {
       console.log(error);

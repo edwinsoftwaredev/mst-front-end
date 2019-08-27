@@ -22,7 +22,7 @@
               <div class="album-track"><span>{{track.album.name}}</span></div>
               <div class="artists-track"><span>{{track.artists.toString()}}</span></div>
               <div class="options-track-container">
-                <button mat-button class="play-spotify"><mat-icon>play_arrow</mat-icon> Play on <img src="../../../assets/images/spotify-brand.svg" width="75px" style="transform: translateY(0px);"></button>
+                <button mat-button class="play-spotify" (click)="goTrack(track.external_urls.spotify)"><mat-icon>play_arrow</mat-icon> Play on <img src="../../../assets/images/spotify-brand.svg" width="75px" style="transform: translateY(0px);"></button>
               </div>
             </div>
           </div>

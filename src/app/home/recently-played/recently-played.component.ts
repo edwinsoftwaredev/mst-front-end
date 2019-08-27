@@ -20,10 +20,14 @@ export class RecentlyPlayedComponent implements OnInit {
     this.getRecentlyPlayedTracks();
   }
 
+  goTrack(url: string) {
+    window.open(url, '_blank');
+  }
+
   getRecentlyPlayedTracks() {
     this.spotifyService.getRecentlyPlayedTracks().subscribe((res: HttpResponse<Array<ISpotifyTrack>>) => {
       if (res.body.length !== 0) {
-        this.recentlyPlayedTracks = res.body;
+        this.recentlyPlayedTracks = res.body.slice(0, 40);
       }
     }, (error: HttpErrorResponse) => {
       console.log(error);
