@@ -12,6 +12,7 @@ import {MatSnackBar} from '@angular/material';
 export class SuggestedPlaylistComponent implements OnInit {
 
   suggestedTracks: Array<ISpotifyTrack> = [];
+  saveEnable = true;
 
   constructor(
     private spotifyService: SpotifyService,
@@ -23,11 +24,15 @@ export class SuggestedPlaylistComponent implements OnInit {
   }
 
   addPlaylist() {
+    this.saveEnable = false;
     if (this.suggestedTracks.length) {
       this.spotifyService.addPlaylist(this.suggestedTracks).subscribe((res: HttpResponse<any>) => {
-        this.snackBar.open('Playlist saved!! 🎉🎉🎉', '', {duration: 5000});
+        this.snackBar.open('Playlist is saved on Spotify!! 🎉🎉🎉', '', {duration: 5000});
       }, (error: HttpErrorResponse) => {
+        this.saveEnable = true;
         console.log(error);
+      }, () => {
+        this.saveEnable = true;
       });
     }
   }
