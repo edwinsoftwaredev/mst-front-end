@@ -5,7 +5,7 @@ import {ISpotifyUser} from '../model/spotify-user.model';
 import {Observable, of} from 'rxjs';
 import {SERVER_API_URL} from '../app-constants';
 import {map} from 'rxjs/operators';
-import {ISpotifyTrack} from '../model/spotify-track.model';
+import {ISpotifyTrack, SpotifyTrack} from '../model/spotify-track.model';
 import * as moment from 'moment';
 import {ISpotifyArtist} from '../model/spotify-artist.model';
 
@@ -34,6 +34,10 @@ export class SpotifyService {
   }
 
   addPlaylist(tracks: Array<ISpotifyTrack>): Observable<HttpResponse<any>> {
+    tracks.map((track: ISpotifyTrack) => {
+      return new SpotifyTrack(track.uri, track.id);
+    });
+
     return this.httpClient.post(SERVER_API_URL + 'api/add-playlist', tracks, {observe: 'response'});
   }
 
