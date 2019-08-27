@@ -47,15 +47,15 @@ export class MenuComponent implements OnInit {
   }
 
   goHome(): void {
-    this.router.navigate(['../'], {relativeTo: this.route});
+    this.router.navigateByUrl('/home');
   }
 
   goRecentlyPlayed(): void {
-    this.router.navigate(['home/recently-played'], {relativeTo: this.route});
+    this.router.navigateByUrl('/home/recently-played');
   }
 
   goMakePlaylist(): void {
-    this.router.navigate(['home/make-playlist'], {relativeTo: this.route});
+    this.router.navigateByUrl('/home/make-playlist');
   }
 
   logout() {
