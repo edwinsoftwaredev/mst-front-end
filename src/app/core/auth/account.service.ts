@@ -85,4 +85,12 @@ export class AccountService {
       return this.user;
     });
   }
+
+  /**
+   * Method for delete a user
+   */
+  delete(): Promise<any> {
+    return this.httpClient.delete(SERVER_API_URL + 'api/delete-account', {observe: 'response'})
+      .toPromise();
+  }
 }

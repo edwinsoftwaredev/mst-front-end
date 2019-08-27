@@ -11,6 +11,7 @@ import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {XhrInterceptor} from './config/interceptors/xhr.interceptor';
 import {XsrfInterceptor} from './config/interceptors/xsrf.interceptor';
 import {HomeModule} from './home/home.module';
+import {SettingsModule} from './settings/settings.module';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import {HomeModule} from './home/home.module';
     SharedModule,
     AuthenticationModule,
     HomeModule,
+    SettingsModule,
     AppRoutingModule,
   ],
   providers: [

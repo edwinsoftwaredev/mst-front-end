@@ -15,6 +15,7 @@ import {ISpotifyArtist} from '../model/spotify-artist.model';
 export class SpotifyService {
 
   private spotifyUser: HttpResponse<ISpotifyUser>;
+  private suggestedPlaylist: HttpResponse<Array<ISpotifyTrack>>;
 
   constructor(
     private httpClient: HttpClient
@@ -42,6 +43,10 @@ export class SpotifyService {
   }
 
   getSuggestedPlaylist(): Observable<HttpResponse<Array<ISpotifyTrack>>> {
+    if (this.suggestedPlaylist) {
+      return of(this.suggestedPlaylist);
+    }
+
     return this.httpClient
       .get<Array<ISpotifyTrack>>(SERVER_API_URL + 'api/suggested-playlist', {observe: 'response'})
       .pipe(map((trackArrayRes: HttpResponse<Array<ISpotifyTrack>>) => {
@@ -55,6 +60,7 @@ export class SpotifyService {
           });
         }
 
+        this.suggestedPlaylist = trackArrayRes;
         return trackArrayRes;
       }));
   }
