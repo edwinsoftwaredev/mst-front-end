@@ -91,7 +91,7 @@ export class AccountService {
    * Method for delete a user
    */
   delete(): Promise<any> {
-    return this.httpClient.delete(SERVER_API_URL + 'api/delete-account', {observe: 'response'})
+    return this.httpClient.delete(SERVER_API_URL + `api/delete-account/${this.user.login}`, {observe: 'response'})
       .toPromise();
   }
 }
