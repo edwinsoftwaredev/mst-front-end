@@ -25,12 +25,12 @@ export class SettingsComponent implements OnInit {
       .onAction().subscribe(() => {
 
         this.accountService.delete().then(() => {
+          this.loginService.logout();
           this.snackbar.open('Account Deleted', '', {duration: 1000});
         }, (error: HttpErrorResponse) => {
+          this.loginService.logout();
           this.snackbar.open('There was a problem while trying to delete your account. Try later.', '', {duration: 5000});
         });
-
-        this.loginService.logout();
       });
   }
 }
