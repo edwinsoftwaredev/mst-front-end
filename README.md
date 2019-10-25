@@ -1,3 +1,5 @@
+# plugtify-front-end
+
 Plugtify Front-End Angular - Spotify API
 
 This repository contains the Front-end for the Plugtify Application
