@@ -1,3 +1,3 @@
 FROM nginx:stable-alpine
-COPY ./dist/Plugtify/ /usr/share/nginx/html/
+COPY ./dist/Plugtify/ /var/www/html/
 COPY ./nginx.conf /etc/nginx/nginx.conf
