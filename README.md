@@ -9,4 +9,4 @@ This application gets and show:
 * the latest played tracks by a Spotify User.
 
 
-Back-End: https://github.com/EdMagoo/plugtify-back-end
+Back-End: https://github.com/edwinsoftwaredev/plugtify-back-end
